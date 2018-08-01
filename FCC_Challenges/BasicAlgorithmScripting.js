@@ -28,3 +28,31 @@ function factorialize(num) {
   return fct;
 }
 factorialize(3);
+
+//Find the Longest Word in a String
+//Return the length of the longest word in the provided sentence.
+function findLongestWordLength(str) {
+    var obj = str.split(' ');// Split the words up
+    var letterCount = 0; //variable for number of letters
+    for (var i = 0; i < obj.length; i++) { //loop through the split string
+        if (letterCount < obj[i].length) { // this looks ugly I'm sure there is a better way
+            letterCount = obj[i].length;
+        }
+    }
+    console.log(letterCount);
+    return letterCount;    
+} 
+findLongestWordLength("The quick brown fox jumped over the lazy dog");
+findLongestWordLength("Pride and Prejudice");
+
+//Return Largest Numbers in Arrays
+//Return an array consisting of the largest number from each provided sub-array. For simplicity, the provided array will contain exactly 4 sub-arrays. Remember, you can iterate through an array with a simple for loop, and access each member with array syntax arr[i].
+function largestOfFour(arr) {
+  var myArr=[];// my solution
+  for(var i=0; i < arr.length; i++){
+     var n = Math.max.apply (null,arr[i]);// used hint in the explination    
+     myArr.push(n);
+  }
+  return myArr;
+}
+largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
