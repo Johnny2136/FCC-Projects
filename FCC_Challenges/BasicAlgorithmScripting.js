@@ -56,3 +56,39 @@ function largestOfFour(arr) {
   return myArr;
 }
 largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+
+//Confirm the Ending
+//The function is a whole Boolean operation. You need to return true if the first argument ends with the second argument. This means that for the problem script, it should return true for the confirmEnding('Bastian', 'n'); case.
+function confirmEnding(str, target) {
+  // "Never give up and good luck will find you."
+  // -- Falcor
+  var sln = target.length;
+  console.log(sln);//Debugging statment
+  if(str.substr(-sln) === target){
+    console.log(str.substr(-sln) + " = " + target);//Debugging statment
+    return true;
+  } else {
+    return false;
+  }
+}
+confirmEnding("Bastian", "n");
+
+// Repeat a String Repeat a String
+// Repeat a given string str (first argument) for num times (second argument). Return an empty string if num is not a positive number.
+function repeatStringNumTimes(str, num) {
+var newStr = ""; 
+  for(var i = 1; i <= num; i++){    
+    newStr += str;      
+  }
+console.log(newStr);
+return newStr;
+}// repeat after me
+repeatStringNumTimes("abc", 3);
+
+//Truncate a String
+//Truncate a string (first argument) if it is longer than the given maximum string length (second argument). Return the truncated string with a ... ending.
+function truncateString(str, num) {
+  // Clear out that junk in your trunk
+  return (str.length > num ? (str.substring(0, num) + '...'):str);
+}
+console.log(truncateString("A-tisket a-tasket A green and yellow basket", 8));
