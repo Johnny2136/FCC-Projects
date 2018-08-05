@@ -191,3 +191,20 @@ console.log(mutation(["hello", "hey"]));//should return false
 console.log(mutation(["hello", "Hello"]));// should return true
 console.log(mutation(["Alien", "line"]));// should return true
 console.log("--------------------------------------------------");
+
+
+//Chunky Monkey
+//Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
+function chunkArrayInGroups(arr, size) {//My solution reusing slice and push
+  var a = 0;      
+  var result = [0];
+  for(var i = 0; i < arr.length; i += size){ 
+      console.log(a);//Debugging
+      result.push(arr.slice(a, size +i));
+      a += size; 
+  }
+  console.log(result + " & " + arr); //Debugging 
+  return result;
+}
+console.log(chunkArrayInGroups(["a", "b", "c", "d","a", "b", "c", "d"], 2));
+console.log("--------------------------------------------------");
