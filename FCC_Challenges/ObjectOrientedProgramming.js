@@ -271,3 +271,111 @@ Cat("HelloKitty");
 Bear("yogi");
 console.log(Object.prototype.isPrototypeOf(Animal.prototype));
 console.log("--------------------------------------------");
+
+//Inherit Behaviors from a Supertype
+//Use Object.create to make two instances of Animal named duck and beagle.
+function Animal() { }
+Animal.prototype = {
+  constructor: Animal, 
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+// Add your code below this line
+let duck = Object.create(Animal.prototype);; // Change this line// my solution
+let beagle5 = Object.create(Animal.prototype); // Change this line// my solution
+duck.eat(); // Should print "nom nom nom"
+beagle5.eat(); // Should print "nom nom nom"
+console.log("--------------------------------------------"); 
+
+//Set the Child's Prototype to an Instance of the Parent
+//Modify the code so that instances of Dog inherit from Animal.
+function Animal2() { }
+Animal2.prototype = {
+  constructor: Animal2,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+function Dog2() { };
+// Add your code below this line
+Dog2.prototype = Object.create(Animal2.prototype);// my solution
+let beagle6 = new Dog2();
+beagle6.eat();  // Should print "nom nom nom"
+console.log("--------------------------------------------");
+
+//Reset an Inherited Constructor Property
+//Fix the code so duck.constructor and beagle.constructor return their respective constructors.
+function Animal() { }
+function Bird() { }
+function Dog() { }
+Bird.prototype = Object.create(Animal.prototype);
+Dog.prototype = Object.create(Animal.prototype);
+// Add your code below this line
+Bird.prototype.constructor = Bird;// my solution
+Dog.prototype.constructor = Dog;// my solution
+let duck7 = new Bird();
+let beagle7 = new Dog();
+console.log(new Bird());
+console.log(new Dog());
+console.log("--------------------------------------------");
+
+//Add Methods After Inheritance
+//Add all necessary code so the Dog object inherits from Animal and the Dog's prototype constructor is set to Dog. Then add a bark() method to the Dog object so that beagle can both eat() and bark(). The bark() method should print "Woof!" to the console.
+function Animal() { }
+Animal.prototype.eat = function() { console.log("nom nom nom"); };
+function Dog() { }
+// Add your code below this line
+Dog.prototype = Object.create(Animal.prototype);// my solution
+Dog.prototype.constructor = Dog;// my solution
+Dog.prototype.bark = function() {// my solution
+  console.log( "Woof!");// my solution
+};
+// Add your code above this line
+let beagle8 = new Dog();
+beagle8.eat(); // Should print "nom nom nom"
+beagle8.bark(); // Should print "Woof!" 
+console.log("--------------------------------------------");
+
+//Override Inherited Methods
+//Override the fly() method for Penguin so that it returns "Alas, this is a flightless bird."
+function Bird() { }
+Bird.prototype.fly = function() { return "I am flying!"; };
+function Penguin() { }
+Penguin.prototype = Object.create(Bird.prototype);
+Penguin.prototype.constructor = Penguin;
+// Add your code below this line
+// Penguin.fly() overrides Bird.fly()
+Penguin.prototype.fly = function() {
+  return "Alas, this is a flightless bird.";
+};
+// Add your code above this line
+let penguin = new Penguin();
+console.log(penguin.fly());
+console.log("--------------------------------------------");
+
+//Use a Mixin to Add Common Behavior Between Unrelated Objects
+//Create a mixin named glideMixin that defines a method named glide. Then use the glideMixin to give both bird and boat the ability to glide.
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+let boat = {
+  name: "Warrior",
+  type: "race-boat"
+};
+// Add your code below this line
+let glideMixin = function(obj) {
+  obj.glide = function() {
+    console.log("Gliding, wooosh!");
+  }
+};
+ glideMixin(bird);
+ glideMixin(boat);
+bird.glide(); // prints "Gliding, wooosh!"
+boat.glide();
+console.log(bird); // prints "Gliding, wooosh!"
+console.log(boat); // prints "Gliding, wooosh!"
+console.log("--------------------------------------------");
+
+//Next
