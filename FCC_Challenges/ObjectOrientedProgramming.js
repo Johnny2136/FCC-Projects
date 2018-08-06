@@ -115,3 +115,159 @@ console.log(beagle); // prints Snoopy
 console.log(Dog); // prints Snoopy
 console.log("--------------------------------------------");
 
+console.log("--------------------------------------------");
+
+//Iterate Over All Properties (for monday day 13)
+//Add all of the own properties of beagle to the array ownProps. Add all of the prototype properties of Dog to the array prototypeProps.
+function Dog(name) {
+  this.name = name;
+}
+Dog.prototype.numLegs = 4;
+let beagle1 = new Dog("Snoopy");
+let ownProps1 = [];
+let prototypeProps = [];
+// Add your code below this line 
+for (let property in beagle1) {
+  if(beagle1.hasOwnProperty(property)) {
+    ownProps1.push(property);
+  } else {
+    prototypeProps.push(property);
+  }
+}
+console.log(beagle1); // prints Snoopy
+console.log(ownProps1); // prints Snoopy
+console.log("--------------------------------------------");
+
+//Understand the Constructor Property (not done yet)
+//Write a joinDogFraternity function that takes a candidate parameter and, using the constructor property, return true if the candidate is a Dog, otherwise return false.
+function Dog(name) {
+  this.name = name;
+}
+Dog.prototype.numLegs = 4;
+let beagle2 = new Dog("Snoopy");
+let ownProps2 = [];
+let prototypeProps2 = [];
+// Add your code below this line 
+for (let property in beagle2) {
+  if(beagle2.hasOwnProperty(property)) {
+    ownProps2.push(property);
+  } else {
+    prototypeProps2.push(property);
+  }
+}
+console.log(ownProps); // prints ["name"]
+console.log(prototypeProps); // prints ["numLegs"]
+console.log("--------------------------------------------");
+
+//Understand the Constructor Property
+//Write a joinDogFraternity function that takes a candidate parameter and, using the constructor property, return true if the candidate is a Dog, otherwise return false.
+function Dog(name) {
+  this.name = name;
+}
+// Add your code below this line
+function joinDogFraternity(candidate) {
+  if (candidate.constructor === Dog) {
+     return true;
+   } else {
+    return false;
+   }
+}
+console.log(Dog); // prints ["name"]
+console.log(joinDogFraternity); // prints ["numLegs"]
+console.log("--------------------------------------------");
+
+//Change the Prototype to a New Object
+//Add the property numLegs and the two methods eat() and describe() to the prototype of Dog by setting the prototype to a new object.
+function Dog(name) {
+  this.name = name; 
+}
+Dog.prototype = {
+  // Add your code below this line
+  numLegs: 2,
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+console.log(Dog.prototype);
+console.log("--------------------------------------------");
+
+//Remember to Set the Constructor Property when Changing the Prototype
+//Define the constructor property on the Dog prototype.
+function Dog(name) {
+  this.name = name; 
+}
+// Modify the code below this line
+Dog.prototype = { 
+  constructor: Dog, 
+  numLegs: 2, 
+  eat: function() {
+    console.log("nom nom nom"); 
+  }, 
+  describe: function() {
+    console.log("My name is " + this.name); 
+  }
+};
+console.log(Dog.prototype);
+console.log("--------------------------------------------");
+
+//Understand Where an Object’s Prototype Comes From
+//Use isPrototypeOf to check the prototype of beagle.
+function Dog(name) {
+  this.name = name;
+}
+let beagle3 = new Dog("Snoopy");
+// Add your code below this line
+Dog.prototype.isPrototypeOf(beagle3);
+// My solution returns true
+console.log(Dog.prototype.isPrototypeOf(beagle3));
+console.log("--------------------------------------------");
+
+//Understand the Prototype Chain
+//All objects in JavaScript (with a few exceptions) have a prototype. Also, an object’s prototype itself is an object.
+function Dog(name) {
+  this.name = name;
+}
+let beagle4 = new Dog("Snoopy");
+Dog.prototype.isPrototypeOf(beagle4);  // => true
+// Fix the code below so that it evaluates to true
+//???.isPrototypeOf(Dog.prototype);//original
+Object.prototype.isPrototypeOf(Dog.prototype);//my solution returns true
+console.log(Object.prototype.isPrototypeOf(Dog.prototype));
+console.log("--------------------------------------------");
+
+//Use Inheritance So You Don't Repeat Yourself
+//The eat method is repeated in both Cat and Bear. Edit the code in the spirit of DRY by moving the eat method to the Animal supertype.
+function Cat(name) {
+  this.name = name;
+  console.log("My name is " + this.name);  
+}
+Cat.prototype = {
+  constructor: Cat, 
+  //eat: function() {// remove this
+    //console.log("nom nom nom");
+  //}
+};
+function Bear(name) {
+  this.name = name;
+  console.log("My name is " + this.name);  
+}
+Bear.prototype = {
+  constructor: Bear, 
+  //eat: function() {// remove this
+    //console.log("nom nom nom");
+ //}
+};
+function Animal() { }
+Animal.prototype = {
+  constructor: Animal,
+    eat: function() {// my solution
+    console.log("nom nom nom");
+    }
+};
+Cat("HelloKitty");
+Bear("yogi");
+console.log(Object.prototype.isPrototypeOf(Animal.prototype));
+console.log("--------------------------------------------");
