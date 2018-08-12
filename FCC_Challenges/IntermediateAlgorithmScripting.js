@@ -53,3 +53,50 @@ console.log(destroyer([2, 3, 2, 3], 2, 3)); //should return [].
 console.log(destroyer(["tree", "hamburger", 53], "tree", 53)); //should return ["hamburger"].
 console.log(destroyer(["possum", "trollo", 12, "safari", "hotdog", 92, 65, "grandma", "bugati", "trojan", "yacht"], "yacht", "possum", "trollo", "safari", "hotdog", "grandma", "bugati", "trojan")); //should return [12,92,65].
 console.log("<----------------------next exercise------------------------->");
+
+console.log("Wherefore art thou")
+//Make a function that looks through an array of objects (first argument) and returns an array of all objects that have matching name and value pairs (second argument). Each name and value pair of the source object has to be present in the object from the collection if it is to be included in the returned array.
+//For example, if the first argument is [{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], and the second argument is { last: "Capulet" }, then you must return the third object from the array (the first argument), because it contains the name and its value, that was passed on as the second argument.
+function whatIsInAName(collection, source) {
+  // What's in a name?
+  let srcKeys = Object.keys(source);
+  let value;
+  let filtered = collection.filter((x) => {
+    for(let y = 0; y < srcKeys.length; y++){
+      if(x.hasOwnProperty(srcKeys[y]) && x[srcKeys[y]] == source[srcKeys[y]]){
+        value = true;
+      } else {
+        return false;  // if false stop looping right here and move on
+      }
+    }
+    return value;
+  });
+     console.log(filtered);
+     return filtered;
+}
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });// should return [{ first: 'Tybalt', last: 'Capulet' }].
+whatIsInAName([{ "apple": 1 }, { "apple": 1 }, { "apple": 1, "bat": 2 }], { "apple": 1 });// should return [{ "apple": 1 }, { "apple": 1 }, { "apple": 1, "bat": 2 }].
+whatIsInAName([{ "apple": 1, "bat": 2 }, { "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, "bat": 2 });// should return [{ "apple": 1, "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }].
+whatIsInAName([{ "apple": 1, "bat": 2 }, { "apple": 1 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, "cookie": 2 });// should return [{ "apple": 1, "bat": 2, "cookie": 2 }].
+whatIsInAName([{ "apple": 1, "bat": 2 }, { "apple": 1 }, { "apple": 1, "bat": 2, "cookie": 2 }, { "bat":2 }], { "apple": 1, "bat": 2 });// should return [{ "apple": 1, "bat": 2 }, { "apple": 1, "bat": 2, "cookie":2 }].
+whatIsInAName([{"a": 1, "b": 2, "c": 3}], {"a": 1, "b": 9999, "c": 3});// should return [].
+console.log("<----------------------next exercise------------------------->");
+
+
+console.log("Spinal Tap Case");
+//Convert a string to spinal case. Spinal case is all-lowercase-words-joined-by-dashes.
+function spinalCase(str) {
+  // Replace low-upper case to low-space-uppercase
+  str = str.replace(/([a-z])([A-Z])/g, '$1 $2');
+  // Split on whitespace and underscores and join with dash
+  console.log(str.toLowerCase().split(/(?:_| )+/) .join('-'));
+  return str.toLowerCase().split(/(?:_| )+/) .join('-');
+}
+// Unit test:
+spinalCase("This Is Spinal Tap");// should return "this-is-spinal-tap".
+spinalCase("thisIsSpinalTap");// should return "this-is-spinal-tap".
+spinalCase("The_Andy_Griffith_Show");// should return "the-andy-griffith-show".
+spinalCase("Teletubbies say Eh-oh");// should return "teletubbies-say-eh-oh".
+spinalCase("AllThe-small Things");// should return "all-the-small-things".
+console.log("<----------------------next exercise------------------------->");
+
