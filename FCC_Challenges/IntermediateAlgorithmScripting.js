@@ -93,10 +93,107 @@ function spinalCase(str) {
   return str.toLowerCase().split(/(?:_| )+/) .join('-');
 }
 // Unit test:
-spinalCase("This Is Spinal Tap");// should return "this-is-spinal-tap".
+spinalCase("This one goes to 11");// Sorry but in the spirit of spinal tap.
 spinalCase("thisIsSpinalTap");// should return "this-is-spinal-tap".
 spinalCase("The_Andy_Griffith_Show");// should return "the-andy-griffith-show".
 spinalCase("Teletubbies say Eh-oh");// should return "teletubbies-say-eh-oh".
 spinalCase("AllThe-small Things");// should return "all-the-small-things".
 console.log("<----------------------next exercise------------------------->");
 
+
+console.log("Pig Latin");
+//Translate the provided string to pig latin. Pig Latin takes the first consonant (or consonant cluster) of an English word, moves it to the end of the word and suffixes an "ay". If a word begins with a vowel you just add "way" to the end. Input strings are guaranteed to be English words in all lowercase.
+function translatePigLatin(str) {
+  var pigLatin = '';
+  var RegExp = /[aeiou]/gi;
+  if (str[0].match(RegExp)) {
+    pigLatin = str + 'way';
+    //console.log('Test 1st letter is a aeiou');
+  } else if(str.match(RegExp) === null) {
+    pigLatin = str + 'ay';
+    //console.log('Test there are only consonants');
+  } else {
+    var vowelIndex = str.indexOf(str.match(RegExp)[0]);
+    //console.log(vowelIndex = str.indexOf(str.match(RegExp)[0]));
+    pigLatin = str.substr(vowelIndex) + str.substr(0, vowelIndex) + 'ay';
+  }  
+  console.log(pigLatin);
+  return pigLatin;
+}
+translatePigLatin("consonant");// should return "onsonantcay
+translatePigLatin("california");// should return "aliforniacay".
+translatePigLatin("paragraphs");// should return "aragraphspay".
+translatePigLatin("glove");// should return "oveglay".
+translatePigLatin("algorithm");// should return "algorithmway".
+translatePigLatin("eight");// should return "eightway".
+translatePigLatin("myclm");// should return "eightway".
+translatePigLatin("shmmnd");// should return "eightway".
+console.log("<----------------------next exercise------------------------->");
+
+
+console.log("Search and Replace");
+//Perform a search and replace on the sentence using the arguments provided and return the new sentence.
+//First argument is the sentence to perform the search and replace on.
+//Second argument is the word that you will be replacing (before).
+//Third argument is what you will be replacing the second argument with (after).
+//Note: Preserve the case of the first character in the original word when you are replacing it. For example if you mean to replace the word "Book" with the word "dog", it should be replaced as "Dog"
+function myReplace(str, before, after) {  
+   console.log(str + "  Change -->  " + before +"  to -->  " + after ); //Degugging
+  var myStr = str.split(" ");
+  let index = myStr.indexOf(before);
+  let word = myStr.splice(index,1);
+  var exp = /[A-Z]/g;   
+  if (word[0].search(exp) === -1) {
+    myStr.splice(index, 0, after);
+    console.log("Solution:  " + myStr.join(" "));//Debugging
+    return myStr.join(" ");
+  } else {
+    after = after.replace(after[0], after[0].toUpperCase());
+    myStr.splice(index, 0, after);
+    console.log("Solution:  " + myStr.join(" "));//Debugging
+    return myStr.join(" ");
+  }
+};
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
+console.log("<----------------------next exercise------------------------->");
+
+
+console.log("DNA Pairing");
+//The DNA strand is missing the pairing element. Take each character, get its pair, and return the results as a 2d array. Base pairs are a pair of AT and CG. Match the missing element to the provided character. Return the provided character as the first element in each array. For example, for the input GCG, return [["G", "C"], ["C","G"],["G", "C"]]. The character and its pair are paired up in an array, and all the arrays are grouped into one encapsulating array.
+function pairElement(str) {
+  //constant seq (DNA Sequence) object with all possible pairings.
+  const seq = {T:'A', A:'T', G:'C', C:'G'};  
+  let myArr = str.split('');//split str into myArr.
+  console.log(myArr = str.split(''));//Debugging 
+  for (let i = 0; i < myArr.length; i++){
+     myArr[i] = [myArr[i], seq[myArr[i]]];
+  }; //replace 1d myArr item w/  2d myArr.
+  console.log(myArr);//Debugging
+  return myArr;
+};
+// test here
+pairElement("GCG");// should return [["G","C"],["C","G"],["G","C"]].
+pairElement("ATCGA"); //should return [["A","T"],["T","A"],["C","G"],["G","C"],["A","T"]].
+pairElement("TTGAG"); //should return [["T","A"],["T","A"],["G","C"],["A","T"],["G","C"]].
+pairElement("CTCTA"); //should return [["C","G"],["T","A"],["C","G"],["T","A"],["A","T"]].
+console.log("<----------------------next exercise------------------------->");
+
+
+console.log("Missing letters");
+//Find the missing letter in the passed letter range and return it. If all letters are present in the range, return undefined.
+function fearNotLetter(str) {//MySolution Map and Split
+  let myStr = str.charCodeAt(0), missing;
+  console.log(str);//debugging
+  str.split('').map(function(letter,index) {
+    if (str.charCodeAt(index) == myStr) {
+      ++myStr;
+    } else {
+      missing = String.fromCharCode(myStr);
+    }
+  });
+  console.log("Missing -->  " + missing)//debugging
+  return missing;
+}
+// test here 
+fearNotLetter("abce");
+console.log("<----------------------next exercise------------------------->");
