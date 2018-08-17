@@ -197,3 +197,117 @@ function fearNotLetter(str) {//MySolution Map and Split
 // test here 
 fearNotLetter("abce");
 console.log("<----------------------next exercise------------------------->");
+
+console.log("Sorted Union");
+//Write a function that takes two or more arrays and returns a new array of unique values in the order of the original provided arrays. In other words, all values present from all arrays should be included in their original order, but with no duplicates in the final array. The unique numbers should be sorted by their original order, but the final array should not be sorted in numerical order.
+function uniteUnique(arr) {
+  console.log(arr);
+  console.log([].concat(...arguments));
+  let myArray = [].concat(...arguments);
+  console.log( [...new Set(myArray)]);
+  return [...new Set(myArray)];
+}
+// test here
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+console.log("<----------------------next exercise------------------------->");
+
+console.log("Convert HTML Entities");
+//Convert the characters &, <, >, " (double quote), and ' (apostrophe), in a string to their corresponding HTML entities. (You got to be kidding me!!!)
+ function convertHTML(str) {
+      const htmlEnt={
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '\"':'&quot;',
+        '\'':"&apos;"
+      };
+  return str.split('').map(function(ojbect){//Use Split and map function to filter str.
+        return htmlEnt[ojbect] || ojbect;
+      }).join('');//Use .join prototype
+  };  
+//test here
+console.log(convertHTML("Dolce & Gabbana")); //should return Dolce &​amp; Gabbana.
+console.log(convertHTML("Hamburgers < Pizza < Tacos")); //should return Hamburgers &​lt; Pizza &​lt; Tacos.
+console.log(convertHTML("Sixty > twelve")); //should return Sixty &​gt; twelve.
+console.log(convertHTML('Stuff in "quotation marks"')); //should return Stuff in &​quot;quotation marks&​quot;.
+console.log(convertHTML("Schindler's List")); //should return Schindler&​apos;s List.
+console.log(convertHTML("<>")); //should return &​lt;&​gt;.
+console.log(convertHTML("abc")); //should return abc.
+console.log("<----------------------next exercise------------------------->");
+
+console.log("Sum All Odd Fibonacci Numbers");
+//Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num. The first two numbers in the Fibonacci sequence are 1 and 1. Every additional number in the sequence is the sum of the two previous numbers. The first six numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8. For example, sumFibs(10) should return 10 because all odd Fibonacci numbers less than or equal to 10 are 1, 1, 3, and 5.
+function sumFibs(num) {
+  // create an array of fibo numbers till num
+  var fibo = [1];
+  for (var n = 1; n <= num;) {
+      fibo.push(n);
+      n = fibo[fibo.length - 1] + fibo[fibo.length - 2];
+      console.log(n);
+  }
+  // return the sum of odd numbers from fibo
+  var fiboSum = fibo.reduce(function(prev, curr) {
+      if (curr %2 !== 0) return prev + curr;
+      else return prev;
+    }); 
+  console.log("sum --> " + fiboSum);
+  return fiboSum;
+}
+// test here
+sumFibs(4);
+console.log("<----------------------next exercise------------------------->");
+
+console.log("Sum All Primes");
+//Sum all the prime numbers up to and including the provided number. A prime number is defined as a number greater than one and having only two divisors, one and itself. For example, 2 is a prime number because it's only divisible by one and two. The provided number may not be a prime.
+function sumPrimes(num) {
+  function myPrime(number){
+      for (let i = 2; i <= number; i++){
+          if(number % i === 0 && number!= i){
+             return false;
+          }
+       }
+    return true;
+  };
+  if (num === 1){
+    return 0;
+  };
+  if(myPrime(num) === false){
+    return sumPrimes(num - 1);
+  };
+  // Check if your number is prime
+  if(myPrime(num) === true){
+    return num + sumPrimes(num - 1);
+  }
+};
+// test here
+console.log(sumPrimes(10));
+console.log("<----------------------next exercise------------------------->");
+
+console.log("Smallest Common Multiple");
+//Find the smallest common multiple of the provided parameters that can be evenly divided by both, as well as by all sequential numbers in the range between these parameters. The range will be an array of two numbers that will not necessarily be in numerical order. For example, if given 1 and 3, find the smallest common multiple of both 1 and 3 that is also evenly divisible by all numbers between 1 and 3. The answer here would be 6.
+function smallestCommons(arr) {
+let max = Math.max(arr[0],arr[1]);
+let min = Math.min(arr[0],arr[1]);
+//console.log(max + " & " + min);//Debugging
+
+  function smallComMulti(a, b){ //find smallest Common Multiple
+    for(var i = 1; i <= b; i++){     
+      if((i * a) % b === 0){
+        //console.log(i * a);//Debugging
+        return (i * a);
+      }
+    }   
+  };    
+  let myNum = smallComMulti(max, min);
+  for(var ii = min + 1; ii < max; ii++) {    
+    myNum = smallComMulti(myNum, ii);   
+  }
+  console.log(myNum);
+  return myNum;
+};
+// test here
+smallestCommons([1,5]);
+console.log("<----------------------next exercise------------------------->");
+
+console.log("Drop it");
+
