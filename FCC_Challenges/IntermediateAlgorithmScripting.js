@@ -310,4 +310,46 @@ smallestCommons([1,5]);
 console.log("<----------------------next exercise------------------------->");
 
 console.log("Drop it");
+//Given the array arr, iterate through and remove each element starting from the first element (the 0 index) until the function func returns true when the iterated element is passed through it. Then return the rest of the array once the condition is satisfied, otherwise, arr should be returned as an empty array.
+//Resources to solve this: [Array.prototype.findIndex()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex), [Conditional (ternary) Operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator), [JavaScript Operators](https://www.w3schools.com/js/js_operators.asp), [javascript-splice-vs-slice](http://www.tothenew.com/blog/javascript-splice-vs-slice/), 
+function dropElements(arr, func) {
+  console.log(arr.slice(arr.findIndex(func) >= 0
+    ? arr.findIndex(func): arr.length, arr.length));//Used for debugging
+  return arr.slice(arr.findIndex(func) >= 0 
+    ? arr.findIndex(func): arr.length, arr.length);
+};
+// test here
+dropElements([1, 2, 3, 4], function(n) {return n >= 3;});
+console.log("<----------------------next exercise------------------------->");
+
+console.log("Steamroller");
+//Flatten a nested array. You must account for varying levels of nesting.
+function steamrollArray(arr) {
+  let myArr = [].concat(...arr);
+  console.log(myArr);//Debugging
+  //console.log(myArr.some(Array.isArray) ? steamrollArray(myArr) : myArr);//Debugging
+  return myArr.some(Array.isArray) 
+    ? steamrollArray(myArr) : myArr;
+   //console.log(myArr); //Debugging
+};
+// test here
+steamrollArray([[["a"]], [["b"]]]);// should return ["a", "b"].
+steamrollArray([1, [2], [3, [[4]]]]);// should return [1, 2, 3, 4].
+steamrollArray([1, [], [3, [[4]]]]);// should return [1, 3, 4].
+steamrollArray([1, {}, [3, [[4]]]]);// should return [1, {}, 3, 4].
+console.log("<----------------------next exercise------------------------->");
+
+console.log("Binary Agents");
+//Return an English translated sentence of the passed binary string. The binary string will be space separated.
+//Learned something new from: [String.fromCharCode()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode), [String.prototype.split()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split)
+function binaryAgent(str) {
+    console.log(str);//Debugging
+    console.log(String.fromCharCode(...str.split(" ").map(function(char){
+      return parseInt(char, 2); })));//Debugging 
+    return String.fromCharCode(...str.split(" ").map(function(char){ 
+      return parseInt(char, 2); }));
+    };
+    // test here
+    binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+console.log("<----------------------next exercise------------------------->");
 
