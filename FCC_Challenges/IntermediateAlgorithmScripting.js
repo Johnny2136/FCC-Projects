@@ -353,3 +353,109 @@ function binaryAgent(str) {
     binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
 console.log("<----------------------next exercise------------------------->");
 
+console.log("Everything Be True");
+//Check if the predicate (second argument) is truthy on all elements of a collection (first argument). In other words, you are given an array collection of objects. The predicate pre will be an object property and you need to return true if its value is truthy. Otherwise, return false. In JavaScript, truthy values are values that translate to true when evaluated in a Boolean context. Remember, you can access object properties through either dot notation or [] notation.
+function truthCheck(collection, pre) {
+  // Is everyone being true?
+  console.log(collection.every(item => item[pre]));
+  return collection.every(item => item[pre]);
+}
+// This solution uses new prototype (to me)[Array.prototype.every()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
+// test here
+truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex");
+console.log("<--------Alt Solution--------->");
+
+console.log("Everything Be True- alt");
+function truthCheckAlt(collection, pre) {
+  // Is everyone being true?
+  console.log(collection.every(function (item) {
+    return item.hasOwnProperty(pre) && Boolean(item[pre]);
+  }));
+  return collection.every(function (item) {
+    return item.hasOwnProperty(pre) && Boolean(item[pre]);
+  });
+}
+//[Object.prototype.hasOwnProperty()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty)
+// test here
+truthCheckAlt([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex");
+console.log("<----------------------next exercise------------------------->");
+
+console.log("Arguments Optional");
+//Create a function that sums two arguments together. If only one argument is provided, then return a function that expects one argument and returns the sum. For example, addTogether(2, 3) should return 5, and addTogether(2) should return a function. Calling this returned function with a single argument will then return the sum:
+//var sumTwoAnd = addTogether(2);
+//sumTwoAnd(3) returns 5.
+//If either argument isn't a valid number, return undefined.
+function addTogether() {
+  function isNum (num) {
+    return Number.isInteger(num) ? num : undefined;
+  };//Check is arg a #  
+  let a = isNum(arguments[0]);
+  let b = isNum(arguments[1]);  
+  if (arguments.length > 1) {
+    return isNum(a + b);
+  } else if (a) {
+    return function(myArg) {
+      return addTogether(a, myArg);
+    };
+  };
+};
+// test here
+console.log(addTogether(2,3));
+console.log("<----------------------next exercise------------------------->");
+
+console.log("Make a Person");
+//Fill in the object constructor with the following methods below:
+//getFirstName() getLastName() getFullName() setFirstName(first) setLastName(last) setFullName(firstAndLast)
+//Run the tests to see the expected output for each method. The methods that take an argument must accept only one argument and it has to be a string. These methods must be the only available means of interacting with the object.
+var Person = function(firstAndLast) {
+  // Complete the method below and implement the others similarly
+  var fullName = firstAndLast;
+  this.getFirstName = function() {
+    return fullName.split(" ")[0];
+  };
+  this.getLastName = function() {
+    return fullName.split(" ")[1];
+  };
+  this.getFullName = function() {
+    return fullName;
+  };
+  this.setFirstName = function(name) {
+    fullName = name + " " + fullName.split(" ")[1];
+  };
+  this.setLastName = function(name) {
+    fullName = fullName.split(" ")[0] + " " + name;
+  };
+  this.setFullName = function(name) {
+    fullName = name;
+  };
+};
+// test here
+var bob = new Person('Bob Ross');
+console.log(bob.getFullName());
+console.log("<----------------------next exercise------------------------->");
+
+console.log("Map the Debris");
+//Return a new array that transforms the elements' average altitude into their orbital periods (in seconds). The array will contain objects in the format {name: 'name', avgAlt: avgAlt}. You can read about orbital periods on [Wikipedia](https://en.wikipedia.org/wiki/Orbital_period). The values should be rounded to the nearest whole number. The body being orbited is Earth. The radius of the earth is 6367.4447 kilometers, and the GM value of earth is 398600.4418 km3s-2.
+function orbitalPeriod(arr) {
+  const GM = 398600.4418;
+  const earthRadius = 6367.4447;
+  let a = 2 * Math.PI;
+  let myArr = [];
+  let getOrbPeriod = function(obj) {
+    let c = Math.pow(earthRadius + obj.avgAlt, 3);
+    let b = Math.sqrt(c / GM);
+    let orbPeriod = Math.round(a * b);
+    delete obj.avgAlt;
+    obj.orbitalPeriod = orbPeriod;
+    return obj;
+  };
+  for (var element in arr) {
+    myArr.push(getOrbPeriod(arr[element]));
+  }
+  console.log(myArr);
+  return myArr;
+};
+// test here
+orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
+console.log("<----------------------exercise complete------------------------->");
+
