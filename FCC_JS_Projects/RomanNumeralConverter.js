@@ -1,3 +1,9 @@
+/***************************************************************
+ * JavaScript Algorithms and Data Structures Projects:         * 
+ * Roman Numeral Converter, JJ 2018                                 *
+ * https://jsfiddle.net/johnny2136/8m6937xd/20/                *
+ ***************************************************************/
+
 function convertToRoman(num) {
    
   var rom = '';
