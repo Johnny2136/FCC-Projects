@@ -5,7 +5,7 @@ Time to put my new JavaScript skills to work! These challenges will be similar t
 ## The JavaScript Algorithms and Data Structures Projects section consists of the following small JavaScript programs:
 
   - [X] Palindrome Checker
-  - [ ] Roman Numeral Converter
+  - [X] Roman Numeral Converter
   - [ ] Caesars Cipher
   - [ ] Telephone Number Validator
   - [ ] Cash Register
