@@ -14,6 +14,9 @@ function rot13(str) { // LBH QVQ VG!
     return String.fromCharCode(myStr.charCodeAt(0) + (myStr.toLowerCase() < "n" ? 13 : -13));
   });
 };
+// Change the inputs below to test
+rot13("SERR PBQR PNZC");
+rot13("My Test");
 
 
 //I was first trying this, but wanted to use the "?" operator above.
