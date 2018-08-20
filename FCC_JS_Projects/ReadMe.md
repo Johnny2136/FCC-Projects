@@ -46,8 +46,17 @@ Time to put my new JavaScript skills to work! These challenges will be similar t
 
 * User story:
 
-  As a user I want to:
+  As a user I want to: enter a ROT13 encoded string as input to a function which will returns a decoded plain text string.
+  * Other requierments are: 
+    * All letters will be uppercase. 
+    * Do not transform any non-alphabetic character (i.e. spaces, punctuation), but be sure to pass them on in the result.
   
+  * Used the following code:
+    ```javascript
+    return (str + "").replace(/[A-Z]/gi, function (myStr) {/*Regex and .replace*/
+      return String.fromCharCode(myStr.charCodeAt(0) + (myStr.toLowerCase() < "n" ? 13 : -13));/* used 	ternary operator*/
+    });
+    ```  
   
   
 ### Telephone Number Validator
