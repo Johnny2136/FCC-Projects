@@ -20,22 +20,14 @@ rot13("My Test");
 
 
 //I was first trying this, but wanted to use the "?" operator above.
-function rot13alt(str) { // LBH QVQ VG!
-  const a = "A".charCodeAt(0);
-  const n = "N".charCodeAt(0);
-  const z = "Z".charCodeAt(0);
-  let myArr = [];
-  for(let i =0; i < str.length; i++){
-    let code = str.charCodeAt(i);
-    if(code >= a && code <= z){
-        if(code >= n){
-            myArr.push(String.fromCharCode(code - 13));
-		}else{
-            myArr.push(String.fromCharCode(code + 13));};
-    }else{
-        myArr.push(str[i]);};
-    };
-     return myArr.join("");
-  };
+function rot13Alt(str) { // LBH QVQ VG!
+  //console.log(str.replace(/[a-z]/gi, function (newStr) {return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".charAt(           "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm".indexOf(newStr))}));//Debugging 
+  return str.replace(/[a-z]/gi, function (newStr) {
+    return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".charAt(
+           "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm".indexOf(newStr)
+    );
+  } ); 
+}
 // Change the inputs below to test
-rot13alt("SERR PBQR PNZC");
+rot13Alt("SERR PBQR PNZC");
+rot13Alt("My Test");
