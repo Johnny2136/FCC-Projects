@@ -67,6 +67,39 @@ Time to put my new JavaScript skills to work! These challenges will be similar t
   As a user I want to: pass a number to a function that returns true if the passed string looks like a valid US phone number.
   For example: For this challenge you will be presented with a string such as 800-692-7753 or 8oo-six427676;laskdjf. Your job is to validate or reject the US phone number based on any combination of the formats provided above. The area code is required. If the country code is provided, you must confirm that the country code is 1. Return true if the string is a valid US phone number; otherwise return false.
   * Use the following
+  [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
+  [Repl.it FCC Project TelephoneNumberValidatorjs](https://repl.it/@JohnJohnson2/FCCProjectTelephoneNumberValidatorjs)
+  [https://www.regexpal.com/](https://www.regexpal.com/index.php
+  
+  my regex = `/^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/' agaist data set:
+  
+Data: {555-555-5555,  
+1 555-555-5555, 
+1 (555) 555-5555, 
+5555555555, 
+555-555-5555, 
+(555)555-5555, 
+1(555)555-5555, 
+555-5555, 
+5555555, 
+1 555)555-5555, 
+1 555 555 5555, 
+1 456 789 4444, 
+123**&!!asdf#, 
+55555555, 
+(6054756961), 
+2 (757) 622-7382, 
+0 (757) 622-7382, 
+-1 (757) 622-7382, 
+2 757 622-7382, 
+10 (757) 622-7382, 
+27576227382, 
+(275)76227382, 
+2(757)6227382, 
+2(757)622-7382, 
+555)-555-5555, 
+(555-555-5555, 
+(555)5(55?)-5555}
   
   
   
