@@ -77,7 +77,7 @@ Time to put my new JavaScript skills to work! These challenges will be similar t
   ```
   agaist data set:
   
-Data: {555-555-5555,  
+  Data: {555-555-5555,  
 1 555-555-5555, 
 1 (555) 555-5555, 
 5555555555, 
