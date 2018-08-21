@@ -7,7 +7,7 @@ Time to put my new JavaScript skills to work! These challenges will be similar t
   - [X] Palindrome Checker
   - [X] Roman Numeral Converter
   - [X] Caesars Cipher
-  - [ ] Telephone Number Validator
+  - [X] Telephone Number Validator
   - [ ] Cash Register
   
 ## My approch:
