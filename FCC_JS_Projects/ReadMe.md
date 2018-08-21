@@ -71,7 +71,11 @@ Time to put my new JavaScript skills to work! These challenges will be similar t
   [Repl.it FCC Project TelephoneNumberValidatorjs](https://repl.it/@JohnJohnson2/FCCProjectTelephoneNumberValidatorjs)
   [https://www.regexpal.com/](https://www.regexpal.com/index.php
   
-  my regex = `/^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/' agaist data set:
+  validated at https://regex101.com/r/h2HCMZ/1/
+  ```
+  phoNum = /^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/ 
+  ```
+  agaist data set:
   
 Data: {555-555-5555,  
 1 555-555-5555, 
