@@ -8,7 +8,7 @@ Time to put my new JavaScript skills to work! These challenges will be similar t
   - [X] Roman Numeral Converter
   - [X] Caesars Cipher
   - [X] Telephone Number Validator
-  - [ ] Cash Register
+  - [X] Cash Register
   
 ## My approch:
 
