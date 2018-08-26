@@ -104,4 +104,68 @@
 <p class="text-4" style="font-size:40px;">Hello</p>
 <p class="text-5" style="font-size:50px;">Hello</p>
 
-#
+#Use @each to Map Over Items in a List
+<style type='text/sass'>
+  $colors: (color1: blue, color2: black, color3: red);
+  @each $key, $color in $colors {
+    .#{$color}-bg {background-color: $color;}
+  }  
+  div {
+    height: 200px;
+    width: 200px;
+  }
+</style>
+
+<div class="blue-bg"></div>
+<div class="black-bg"></div>
+<div class="red-bg"></div>
+   
+ #Apply a Style Until a Condition is Met with @while
+ <style type='text/sass'>
+$x: 1;
+@while $x < 11 {
+  .text-#{$x} { font-size: 5px * $x;}
+  $x: $x + 1;
+}  
+</style>
+
+<p class="text-1">Hello</p>
+<p class="text-2">Hello</p>
+<p class="text-3">Hello</p>
+<p class="text-4">Hello</p>
+<p class="text-5">Hello</p>
+<p class="text-6">Hello</p>
+<p class="text-7">Hello</p>
+<p class="text-8">Hello</p>
+<p class="text-9">Hello</p>
+<p class="text-10">Hello</p>
+   
+#Split Your Styles into Smaller Chunks with Partials
+// The main.scss file
+@import 'variables';
+
+#Extend One Set of CSS Styles to Another Element
+<style type='text/sass'>
+  h3{
+    text-align: center;
+  }
+  .info{
+    width: 200px;
+    border: 1px solid black;
+    margin: 0 auto;
+  }
+  .info-important {
+     @extend .info;
+     background-color: magenta;
+  }  
+</style>
+<h3>Posts</h3>
+<div class="info-important">
+  <p>This is an important post. It should extend the class ".info" and have its own CSS styles.</p>
+</div>
+
+<div class="info">
+  <p>This is a simple post. It has basic styling and can be extended for other uses.</p>
+</div>
+   
+#End Sass
