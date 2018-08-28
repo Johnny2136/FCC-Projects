@@ -685,6 +685,33 @@ class ControlledInput extends React.Component {
 
 
 
+//Create a Controlled Form
+class MyForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      submit: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      input: event.target.value
+    });
+  }
+  handleSubmit(event) {
+    // change code below this line
+    event.preventDefault();
+    this.setState({
+      submit: this.state.input
+    });
+    // change code above this line
+    
+    
+    
+    
 //Use the Lifecycle Method componentDidMount
 class MyComponent extends React.Component {
   constructor(props) {
@@ -703,6 +730,15 @@ class MyComponent extends React.Component {
   render() {
     return (
       <div>
+        <form onSubmit={this.handleSubmit}>
+          { /* change code below this line */ }
+          <input value={this.state.input} onChange={this.handleChange} />
+          { /* change code above this line */ }
+          <button type='submit'>Submit!</button>
+        </form>
+        { /* change code below this line */ }
+        <h1>{this.state.submit}</h1>
+        { /* change code above this line */ }
         <h1>Active Users: {this.state.activeUsers}</h1>
       </div>
     );
@@ -711,6 +747,83 @@ class MyComponent extends React.Component {
 
 
 
+//Pass State as Props to Child Components
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'CamperBot'
+    }
+  }
+  render() {
+    return (
+       <div>
+         <Navbar name={this.state.name}/>
+       </div>
+    );
+  }
+};
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+    <div>
+      <h1>Hello, my name is: {this.props.name}</h1>
+    </div>
+    );
+  }
+};
+
+
+
+//Pass a Callback as Props
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      inputValue: event.target.value
+    });
+  }
+  render() {
+    return (
+       <div>
+        { /* change code below this line */ }
+        <GetInput input={this.state.inputValue}handleChange={this.handleChange }/>
+        <RenderInput input={this.state.inputValue}/>
+        { /* change code above this line */ }
+       </div>
+    );
+  }
+};
+class GetInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Get Input:</h3>
+        <input
+          value={this.props.input}
+          onChange={this.props.handleChange}/>
+      </div>
+    );
+  }
+};
+class RenderInput extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    
+    
 //Add Event Listeners
 class MyComponent extends React.Component {
   constructor(props) {
@@ -742,8 +855,73 @@ class MyComponent extends React.Component {
   render() {
     return (
       <div>
+        <h3>Input Render:</h3>
+        <p>{this.props.input}</p>
         <h1>{this.state.message}</h1>
       </div>
     );
   }
+};
+
+
+
+//Use the Lifecycle Method componentWillMount
+//No clear direction for this challange very poorly written!
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount() {
+    // change code below this line
+    <div>console.log("test");</div>
+    // change code above this line
+  }
+  render() {
+    return <div />
+  }
+};
+
+
+
+//Manage Updates with Lifecycle Methods
+class Dialog extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillUpdate() {
+    console.log('Component is about to update...');
+  }
+  // change code below this line
+    componentWillReceiveProps(nextProps) {
+      console.log(this.props + '-' + nextProps);
+    };
+    componentDidUpdate() {
+      console.log('Component did update');
+    };
+  // change code above this line
+  render() {
+    return <h1>{this.props.message}</h1>
+  };
+};
+class Controller extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: 'First Message'
+    };
+    this.changeMessage = this.changeMessage.bind(this);
+  };
+  changeMessage() {
+    this.setState({
+      message: 'Second Message'
+    });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.changeMessage}>Update</button>
+        <Dialog message={this.state.message}/>
+      </div>
+    );
+  };
 };
