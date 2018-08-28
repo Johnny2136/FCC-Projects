@@ -812,3 +812,21 @@ class RenderInput extends React.Component {
     );
   }
 };
+
+
+
+//Use the Lifecycle Method componentWillMount
+//No clear direction for this challange very poorly written!
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount() {
+    // change code below this line
+    <div>console.log("test");</div>
+    // change code above this line
+  }
+  render() {
+    return <div />
+  }
+};
