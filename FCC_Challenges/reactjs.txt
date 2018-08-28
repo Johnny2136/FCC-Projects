@@ -708,6 +708,24 @@ class MyForm extends React.Component {
       submit: this.state.input
     });
     // change code above this line
+    
+    
+    
+    
+//Use the Lifecycle Method componentDidMount
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeUsers: null
+    };
+  }
+  componentDidMount() {
+    setTimeout( () => {
+      this.setState({
+        activeUsers: 1273
+      });
+    }, 2500);
   }
   render() {
     return (
@@ -721,6 +739,7 @@ class MyForm extends React.Component {
         { /* change code below this line */ }
         <h1>{this.state.submit}</h1>
         { /* change code above this line */ }
+        <h1>Active Users: {this.state.activeUsers}</h1>
       </div>
     );
   }
@@ -802,12 +821,43 @@ class GetInput extends React.Component {
 class RenderInput extends React.Component {
   constructor(props) {
     super(props);
+    
+    
+    
+//Add Event Listeners
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: ''
+    };
+    this.handleEnter = this.handleEnter.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+  // change code below this line
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyPress)
+  }
+  componentWillUnmount() {
+     document.removeEventListener('keydown', this.handleKeyPress)
+  }
+  // change code above this line
+  handleEnter() {
+    this.setState({
+      message: this.state.message + 'You pressed the enter key! '
+    });
+  }
+  handleKeyPress(event) {
+    if (event.keyCode === 13) {
+      this.handleEnter();
+    }
   }
   render() {
     return (
       <div>
         <h3>Input Render:</h3>
         <p>{this.props.input}</p>
+        <h1>{this.state.message}</h1>
       </div>
     );
   }
