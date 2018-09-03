@@ -1,11 +1,14 @@
-//Introduction to the React Challenges:
-//Create a Simple JSX Element
+# Introduction to the React Challenges:
+
+## Create a Simple JSX Element
+```javascript
 //JavaScript within curly braces: { 'this is treated as JavaScript code' }
 //under the hood the challenges are calling ReactDOM.render(JSX, document.getElementById('root'))
 const JSX = <h1>Hello JSX!</h1>;
+```
 
-
-//Create a Complex JSX Element
+## Create a Complex JSX Element
+```JAVASCRIPT
 const JSX = (<div>
              <h1>Heading One</h1>
              <p>Paragraph Two</p>
@@ -15,10 +18,11 @@ const JSX = (<div>
                <li>List Three</li>
              </ul>
             </div>);
+```
 
 
-
-//Add Comments in JSX
+## Add Comments in JSX
+```javascript
 const JSX = (
   <div>
     <h1>This is a block of JSX</h1>
@@ -26,10 +30,11 @@ const JSX = (
     <p>Here's a subtitle</p>
   </div>
 );
+```
 
 
-
-//Render HTML Elements to the DOM
+## Render HTML Elements to the DOM
+```javascript
 const JSX = (
   <div>
     <h1>Hello World</h1>
@@ -38,19 +43,21 @@ const JSX = (
 );
 // change code below this line
 ReactDOM.render(JSX, document.getElementById('challenge-node'));
+```
 
 
-
-//Define an HTML Class in JSX
+## Define an HTML Class in JSX
+```javascript
 const JSX = (
   <div className= "myDiv">
     <h1>Add a class to this div</h1>
   </div>
 );
+```
 
 
-
-//Learn About Self-Closing JSX Tags
+## Learn About Self-Closing JSX Tags
+```javascript
 const JSX = (
   <div>
     //change code below this line
@@ -64,10 +71,11 @@ const JSX = (
     //change code above this line    
   </div>
 );
+```
 
 
-
-//Create a Stateless Functional Component
+## Create a Stateless Functional Component
+```javascript
 const MyComponent = function() {
   // change code below this line
   return (
@@ -75,10 +83,11 @@ const MyComponent = function() {
   );
   // change code above this line
 };
+```
 
 
-
-//Create a React Component
+## Create a React Component
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -93,10 +102,11 @@ class MyComponent extends React.Component {
     // change code above this line
   }
 };
+```
 
 
-
-// Create a Component with Composition
+## Create a Component with Composition
+```javascript
 const ChildComponent = () => {
   return (
     <div>
@@ -119,10 +129,11 @@ class ParentComponent extends React.Component {
     );
   }
 };
+```
 
 
-
-//Use React to Render Nested Components
+## Use React to Render Nested Components
+```javascript
 const TypesOfFruit = () => {
   return (
     <div>
@@ -160,10 +171,11 @@ class TypesOfFood extends React.Component {
     );
   };
 };
+```
 
 
-
-//Compose React Components
+## Compose React Components
+```javascript
 class Fruits extends React.Component {
   constructor(props) {
     super(props);
@@ -196,10 +208,11 @@ class TypesOfFood extends React.Component {
     );
   };
 };
+```
 
 
-
-//Render a Class Component to the DOM
+## Render a Class Component to the DOM
+```javascript
 class TypesOfFood extends React.Component {
   constructor(props) {
     super(props);
@@ -218,10 +231,11 @@ class TypesOfFood extends React.Component {
 };
 // change code below this line
  ReactDOM.render(<TypesOfFood />, document.getElementById('challenge-node'));
+ ```
  
  
- 
- //Write a React Component from Scratch
+ ## Write a React Component from Scratch
+ ```javascript
  // change code below this line
 class MyComponent extends React.Component {
   constructor(props) {
@@ -237,10 +251,11 @@ class MyComponent extends React.Component {
 };
 // change code below this line
  ReactDOM.render(<MyComponent/>, document.getElementById('challenge-node'));
+ ```
  
  
- 
- //Pass Props to a Stateless Functional Component
+ ## Pass Props to a Stateless Functional Component
+ ```javascript
  const CurrentDate = (props) => {
   return (
     <div>
@@ -267,10 +282,11 @@ class Calendar extends React.Component {
     );
   }
 };
+```
 
 
-
-//Override Default Props
+## Override Default Props
+```javascript
 const Items = (props) => {
   return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
 }
@@ -288,10 +304,11 @@ class ShoppingCart extends React.Component {
     { /* change code above this line */ }
   }
 };
+```
 
 
-
-//Pass an Array as Props
+## Pass an Array as Props
+```javascript
 const List= (props) => {
   { /* change code below this line */ }
   return <p>{props.tasks.join(', ')}</p>
@@ -315,10 +332,11 @@ class ToDo extends React.Component {
     );
   }
 };
+```
 
 
-
-//Use Default Props
+## Use Default Props
+```javascript
 const ShoppingCart = (props) => {
   return (
     <div>
@@ -328,10 +346,11 @@ const ShoppingCart = (props) => {
 };
 // change code below this line
 ShoppingCart.defaultProps = { items: 0};
+```
 
 
-
-//Override Default Props
+## Override Default Props
+```javascript
 const Items = (props) => {
   return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
 }
@@ -349,10 +368,11 @@ class ShoppingCart extends React.Component {
     { /* change code above this line */ }
   }
 };
+```
 
 
-
-//Use PropTypes to Define the Props You Expect
+## Use PropTypes to Define the Props You Expect
+```javascript
 const Items = (props) => {
   return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
 };
@@ -372,10 +392,11 @@ class ShoppingCart extends React.Component {
     return <Items />
   }
 };
+```
 
 
-
-//Access Props Using this.props
+## Access Props Using this.props
+```javascript
 class ReturnTempPassword extends React.Component {
   constructor(props) {
     super(props);
@@ -408,11 +429,12 @@ class ResetPassword extends React.Component {
     );
   };
 };
+```
 
 
-
-//Review Using Props with Stateless Functional Components
-//NO GOOD EXAMPLE!!!
+## Review Using Props with Stateless Functional Components
+* NO GOOD EXAMPLE!!!
+```javascript
 class CampSite extends React.Component {
   constructor(props) {
     super(props);
@@ -438,11 +460,12 @@ class Camper extends React.Component {
 };
 Camper.propTypes = {name:PropTypes.string.isRequired};
 Camper.defaultProps = { name : 'CamperBot'};
+```
 
 
-
-//Create a Stateful Component
-//Example could have been better
+## Create a Stateful Component
+* Example could have been better
+```javascript
 class StatefulComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -459,10 +482,11 @@ class StatefulComponent extends React.Component {
     );
   };
 };
+```
 
 
-
-//Render State in the User Interface
+## Render State in the User Interface
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -480,11 +504,12 @@ class MyComponent extends React.Component {
     );
   }
 };
+```
 
 
-
-//Render State in the User Interface Another Way
-// An example would be nice
+## Render State in the User Interface Another Way
+*  An example would be nice
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -505,10 +530,11 @@ class MyComponent extends React.Component {
     );
   }
 };
+```
 
 
-
-//Set State with this.setState
+## Set State with this.setState
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -533,11 +559,12 @@ class MyComponent extends React.Component {
     );
   }
 };
+```
 
 
-
-//Bind 'this' to a Class Method
-//NO good EXAMPLE!!!!
+## Bind 'this' to a Class Method
+* NO good EXAMPLE!!!!
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -564,11 +591,12 @@ class MyComponent extends React.Component {
     );
   }
 };
+```
 
 
-
-//Use State to Toggle an Element
-//Again NO GOOD EXAMPLE!!!
+## Use State to Toggle an Element
+* Again NO GOOD EXAMPLE!!!
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -603,11 +631,12 @@ class MyComponent extends React.Component {
     }
   }
 };
+```
 
 
-
-//Write a Simple Counter
-//Examples would be nice!
+## Write a Simple Counter
+* Examples would be nice!
+```javascript
 class Counter extends React.Component {
   constructor(props) {
     super(props);
@@ -648,11 +677,12 @@ class Counter extends React.Component {
     );
   }
 };
+```
 
 
-
-//Create a Controlled Input
-//Would it kill you to add RELEVENT examples???
+## Create a Controlled Input
+* Would it kill you to add RELEVENT examples???
+```javascript
 class ControlledInput extends React.Component {
   constructor(props) {
     super(props);
@@ -682,10 +712,11 @@ class ControlledInput extends React.Component {
     );
   }
 };
+```
 
 
-
-//Create a Controlled Form
+## Create a Controlled Form
+```javascript
 class MyForm extends React.Component {
   constructor(props) {
     super(props);
@@ -708,11 +739,12 @@ class MyForm extends React.Component {
       submit: this.state.input
     });
     // change code above this line
+ ```   
     
     
     
-    
-//Use the Lifecycle Method componentDidMount
+## Use the Lifecycle Method componentDidMount
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -744,10 +776,11 @@ class MyComponent extends React.Component {
     );
   }
 };
+```
 
 
-
-//Pass State as Props to Child Components
+## Pass State as Props to Child Components
+```javascript
 class MyApp extends React.Component {
   constructor(props) {
     super(props);
@@ -775,10 +808,11 @@ class Navbar extends React.Component {
     );
   }
 };
+```
 
 
-
-//Pass a Callback as Props
+## Pass a Callback as Props
+```javascript
 class MyApp extends React.Component {
   constructor(props) {
     super(props);
@@ -821,10 +855,11 @@ class GetInput extends React.Component {
 class RenderInput extends React.Component {
   constructor(props) {
     super(props);
+```    
     
     
-    
-//Add Event Listeners
+## Add Event Listeners
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -862,11 +897,12 @@ class MyComponent extends React.Component {
     );
   }
 };
+```
 
 
-
-//Use the Lifecycle Method componentWillMount
-//No clear direction for this challange very poorly written!
+## Use the Lifecycle Method componentWillMount
+* No clear direction for this challange very poorly written!
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -880,10 +916,11 @@ class MyComponent extends React.Component {
     return <div />
   }
 };
+```
 
 
-
-//Manage Updates with Lifecycle Methods
+## Manage Updates with Lifecycle Methods
+```javascript
 class Dialog extends React.Component {
   constructor(props) {
     super(props);
@@ -925,10 +962,11 @@ class Controller extends React.Component {
     );
   };
 };
+```
 
 
-
-//Optimize Re-Renders with shouldComponentUpdate
+## Optimize Re-Renders with shouldComponentUpdate
+```javascript
 class OnlyEvens extends React.Component {
   constructor(props) {
     super(props);
@@ -973,10 +1011,11 @@ class Controller extends React.Component {
     );
   }
 };
+```
 
 
-
-//Introducing Inline Styles
+## Introducing Inline Styles
+```javascript
 class Colorful extends React.Component {
   render() {
     return (
@@ -984,11 +1023,12 @@ class Colorful extends React.Component {
     );
   }
 };
+```
 
 
-
-//Add Inline Styles in React
-//An example would have been nice!
+## Add Inline Styles in React
+* An example would have been nice!
+```javascript
  const styles = {color: "purple", fontSize: 40, border: "2px solid purple"};
 // change code above this line
 class Colorful extends React.Component {
@@ -1000,11 +1040,12 @@ class Colorful extends React.Component {
     // change code above this line
   }
 };
+```
 
 
-
-//Use Advanced JavaScript in React Render Method
-//An example would have been nice!
+## Use Advanced JavaScript in React Render Method
+* An example would have been nice!
+```javascript
 const inputStyle = {
   width: 235,
   margin: 5
@@ -1076,10 +1117,11 @@ class MagicEightBall extends React.Component {
     );
   }
 };
+```
 
 
-
-//Render with an If/Else Condition
+## Render with an If/Else Condition
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -1111,10 +1153,11 @@ class MyComponent extends React.Component {
     } 
   }
 };
+```
 
 
-
-//Use && for a More Concise Conditional
+## Use && for a More Concise Conditional
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -1138,10 +1181,11 @@ class MyComponent extends React.Component {
     );
   }
 };
+```
 
 
-
-//Use a Ternary Expression for Conditional Rendering
+## Use a Ternary Expression for Conditional Rendering
+```javascript
 const inputStyle = {
   width: 235,
   margin: 5
@@ -1189,11 +1233,12 @@ class CheckUserAge extends React.Component {
     );
   }
 };
+```
 
 
-
-//Render Conditionally from Props
-//This was totally awful... poor instructions, no good examples, took a long time to get this.
+## Render Conditionally from Props
+* This was totally awful... poor instructions, no good examples, took a long time to get this.
+```javascript
 class Results extends React.Component {
   constructor(props) {
     super(props);
@@ -1237,10 +1282,11 @@ class GameOfChance extends React.Component {
     );
   }
 };
+```
 
 
-
-//Change Inline CSS Conditionally Based on Component State
+## Change Inline CSS Conditionally Based on Component State
+```javascript
 class GateKeeper extends React.Component {
   constructor(props) {
     super(props);
@@ -1272,10 +1318,11 @@ class GateKeeper extends React.Component {
     );
   }
 };
+```
 
 
-
-//Use Array.map() to Dynamically Render Elements
+## Use Array.map() to Dynamically Render Elements
+```javascript
 const textAreaStyles = {
   width: 235,
   margin: 5
@@ -1323,10 +1370,11 @@ this.state = {
     );
   }
 };
+```
 
 
-
-//Give Sibling Elements a Unique Key Attribute
+## Give Sibling Elements a Unique Key Attribute
+```javascript
 const frontEndFrameworks = [
   'React',
   'Angular',
@@ -1347,10 +1395,11 @@ function Frameworks() {
     </div>
   );
 };
+```
 
 
-
-//Use Array.filter() to Dynamically Filter an Array
+## Use Array.filter() to Dynamically Filter an Array
+```javascript
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -1396,10 +1445,11 @@ class MyComponent extends React.Component {
     );
   }
 };
+```
 
 
-
-//Render React on the Server with renderToString
+## Render React on the Server with renderToString
+```javascript
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -1410,7 +1460,7 @@ class App extends React.Component {
 };
 // change code below this line
 ReactDOMServer.renderToString(<App />);
+```
 
 
-
-//Fin
+**Fin**
