@@ -8,7 +8,7 @@ const JSX = <h1>Hello JSX!</h1>;
 ```
 
 ## Create a Complex JSX Element
-```JAVASCRIPT
+```javascript
 const JSX = (<div>
              <h1>Heading One</h1>
              <p>Paragraph Two</p>
