@@ -381,3 +381,56 @@ const addToDo = (todo) => {
 };
 const store = Redux.createStore(immutableReducer);
 ```
+
+## Remove an Item from an Array
+Instructions sucked and an example would have been nice...
+Finish writing the reducer so a new state array is returned with the item at the specific index removed. 
+```Redux
+const immutableReducer = (state = [0,1,2,3,4,5], action) => {
+  switch(action.type) {
+    case 'REMOVE_ITEM':
+      // don't mutate state here or the tests will fail
+      let newArr = [...state.filter((elem, idx) => { // [1,2,3,5]
+        return idx !== action.index
+      })];
+      return newArr;
+    default:
+      return state;
+  }
+};
+const removeItem = (index) => {
+  return {
+    type: 'REMOVE_ITEM',
+    index
+  }
+};
+const store = Redux.createStore(immutableReducer);
+
+## Copy an Object with Object.assign
+Edit the code to return a new state object for actions with type ONLINE, which set the status property to the string online. Try to use Object.assign() to complete the challenge. 
+```Redux
+const defaultState = {
+  user: 'CamperBot',
+  status: 'offline',
+  friends: '732,982',
+  community: 'freeCodeCamp'
+};
+const immutableReducer = (state = defaultState, action) => {
+  switch(action.type) {
+    case 'ONLINE':
+      // don't mutate state here or the tests will fail
+      const newObject = Object.assign({}, state, {status:'online'})
+      return newObject;
+    default:
+      return state;
+  }
+};
+const wakeUp = () => {
+  return {
+    type: 'ONLINE'
+  }
+};
+const store = Redux.createStore(immutableReducer);
+```
+
+**fin**
