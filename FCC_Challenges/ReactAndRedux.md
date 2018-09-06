@@ -59,7 +59,7 @@ class DisplayMessages extends React.Component {
 
           <button onClick={this.submitMessage}>Submit</button>
           <ul>
-          {this.state.messages.map(messages => <li key={Date}>{message}</li>)}
+          {this.state.messages.map(message => <li key={Date}>{message}</li>)}
           </ul>
         { /* change code above this line */ }
       </div>
