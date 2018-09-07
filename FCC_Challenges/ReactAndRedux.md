@@ -192,3 +192,49 @@ class AppWrapper extends React.Component {
   // change code above this line
 };
 ```
+
+## Extract State Logic to Redux
+Finally an easy one!
+* Create a function mapStateToProps(). This function should take state as an argument, then return an object which maps that state to specific property names. These properties will become accessible to your component via props. Since this example keeps the entire state of the app in a single array, you can pass that entire state to your component. Create a property messages in the object that's being returned, and set it to state.
+* [Review Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+```javascript
+const state = [];
+// change code below this line
+/*()
+//First attempt but not efficient...
+function mapStateToProps(state) {
+  return {
+    messages: state
+  }
+};
+*/
+let mapStateToProps = (state) => {return {messages: state}};
+```
+
+## Extract State Logic to Redux
+This one had an ok example!
+```javascript
+{
+  submitLoginUser: function(username) {
+    dispatch(loginUser(username));
+  }
+}
+```
+* The code editor provides an action creator called addMessage(). Write the function mapDispatchToProps() that takes dispatch as an argument, then returns an object. The object should have a property submitNewMessage set to the dispatch function, which takes a parameter for the new message to add when it dispatches addMessage().
+* [React and Redux: Map Dispatch to Props](https://learn.freecodecamp.org/front-end-libraries/react-and-redux/map-dispatch-to-props/)
+```javascript
+const addMessage = (message) => {
+  return {
+    type: 'ADD',
+    message: message
+  }
+};
+// change code below this line
+let mapDispatchToProps=(dispatch)=>{
+    return {
+        submitNewMessage: function(message) {
+            dispatch(addMessage(message));
+        }
+    }
+};
+```
