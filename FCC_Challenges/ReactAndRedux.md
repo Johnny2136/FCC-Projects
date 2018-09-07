@@ -67,3 +67,128 @@ class DisplayMessages extends React.Component {
   }
 };
 ```
+
+## Extract State Logic to Redux
+Another bad one!
+* First, define an action type 'ADD' and set it to a const ADD. Next, define an action creator addMessage() which creates the action to add a message. You'll need to pass a message to this action creator and include the message in the returned action.
+
+* Then create a reducer called messageReducer() that handles the state for the messages. The initial state should equal an empty array. This reducer should add a message to the array of messages held in state, or return the current state. Finally, create your Redux store and pass it the reducer.
+* [Thanks to user kamifun](https://forum.freecodecamp.org/t/extract-state-logic-to-redux-4/204166)
+```javascript
+// define ADD, addMessage(), messageReducer(), and store here:
+const ADD = 'ADD';
+let initialStatus = [];
+let addMessage = (message) => {
+    return {
+        type: ADD,
+        message: message
+    };
+};
+//originally tried to use "defaltStatus" this fails.
+let messageReducer = (state = initialStatus, action) => {
+    switch(action.type) {
+        case ADD:
+            return [...state, action.message];
+            break;
+        default: 
+            return state;
+    };
+};
+const store = Redux.createStore(messageReducer);
+```
+
+## Use Provider to Connect Redux to React
+This one wasnt too bad... one change i would make is:
+
+**Example:**
+```javascript
+render(){
+    return(
+      <Provider store={store}>
+      <App/>
+      </Provider>
+    );
+   };
+ ```
+* The code editor now shows all your Redux and React code from the past several challenges. It includes the Redux store, actions, and the DisplayMessages component. The only new piece is the AppWrapper component at the bottom. Use this top level component to render the Provider from ReactRedux, and pass the Redux store as a prop. Then render the DisplayMessages component as a child. Once you are finished, you should see your React component rendered to the page.
+
+* Note: React Redux is available as a global variable here, so you can access the Provider with dot notation. The code in the editor takes advantage of this and sets it to a constant Provider for you to use in the AppWrapper render method.
+* [Can't get store from context #193](https://github.com/reduxjs/react-redux/issues/193)
+```javascript
+// Redux Code:
+const ADD = 'ADD';
+const addMessage = (message) => {
+  return {
+    type: ADD,
+    message
+  }
+};
+const messageReducer = (state = [], action) => {
+  switch (action.type) {
+    case ADD:
+      return [
+        ...state,
+        action.message
+      ];
+    default:
+      return state;
+  }
+};
+const store = Redux.createStore(messageReducer);
+
+// React Code:
+class DisplayMessages extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      messages: []
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.submitMessage = this.submitMessage.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      input: event.target.value
+    });
+  }
+  submitMessage() {
+    const currentMessage = this.state.input;
+    this.setState({
+      input: '',
+      messages: this.state.messages.concat(currentMessage)
+    });
+  }
+  render() {
+    return (
+      <div>
+        <h2>Type in a new Message:</h2>
+        <input
+          value={this.state.input}
+          onChange={this.handleChange}/><br/>
+        <button onClick={this.submitMessage}>Submit</button>
+        <ul>
+          {this.state.messages.map( (message, idx) => {
+              return (
+                 <li key={idx}>{message}</li>
+              )
+            })
+          }
+        </ul>
+      </div>
+    );
+  }
+};
+const Provider = ReactRedux.Provider;
+class AppWrapper extends React.Component {
+  // render the Provider here
+    render(){
+    return(
+      <Provider store={store}>
+        <DisplayMessages/>
+      </Provider>
+    );
+  };
+  // change code above this line
+};
+```
