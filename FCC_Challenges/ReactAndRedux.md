@@ -211,7 +211,7 @@ function mapStateToProps(state) {
 let mapStateToProps = (state) => {return {messages: state}};
 ```
 
-## Extract State Logic to Redux
+## Map Dispatch to Props
 This one had an ok example!
 ```javascript
 {
@@ -237,4 +237,44 @@ let mapDispatchToProps=(dispatch)=>{
         }
     }
 };
+```
+
+## Connect Redux to React
+This one didnt have A real good example so I recommend!
+```javascript
+const variableName = connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options]); 
+```
+* The code editor provides an action creator called addMessage(). Write the function mapDispatchToProps() that takes dispatch as an argument, then returns an object. The object should have a property submitNewMessage set to the dispatch function, which takes a parameter for the new message to add when it dispatches addMessage().
+* [React and Redux: Map Dispatch to Props](https://learn.freecodecamp.org/front-end-libraries/react-and-redux/map-dispatch-to-props/)
+```javascript
+const addMessage = (message) => {
+  return {
+    type: 'ADD',
+    message: message
+  }
+};
+const mapStateToProps = (state) => {
+  return {
+    messages: state
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    submitNewMessage: (message) => {
+      dispatch(addMessage(message));
+    }
+  }
+};
+class Presentational extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <h3>This is a Presentational Component</h3>
+  }
+};
+const connect = ReactRedux.connect;
+// change code below this line
+const ConnectedComponent = connect(mapStateToProps, mapDispatchToProps)(Presentational);
 ```
