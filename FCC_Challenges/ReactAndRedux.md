@@ -98,7 +98,7 @@ const store = Redux.createStore(messageReducer);
 ```
 
 ## Use Provider to Connect Redux to React
-This one wasnt too bad... one change i would make is:
+This one wasnt too bad... (one change I would make is:)
 
 **Example:**
 ```javascript
