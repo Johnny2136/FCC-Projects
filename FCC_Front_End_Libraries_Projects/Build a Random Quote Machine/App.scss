@@ -1,0 +1,67 @@
+body {
+  background: url("https://ak9.picdn.net/shutterstock/videos/8118889/thumb/1.jpg") fixed repeat;
+  }
+  
+.container {
+  margin: auto;
+  margin-top: 30px;
+  max-width: auto;
+  border: 3px solid;
+  border-radius: 15px;
+  color: white;
+}
+
+.btn {
+  background-color: cornflowerblue;
+  border: 2px solid;
+  border-radius: 15px;
+  color: white;
+  cursor: default;
+  font-size: 15px;
+  margin-top: 30px;
+  padding: 5px 5px;
+}
+
+.author {
+  font-size: 16px;
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+  margin-top: auto;
+  padding: 3px 5px;
+}
+
+.text {
+  font-size: 32px;
+  color: white;
+  padding: 3px 5px;
+}
+
+.label {  
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;    
+}
+
+.label.success {
+    background-color: none;
+    width: auto;
+}
+
+.item  h1.new-label span{  
+  content: 'ようこそ (Yōkoso!)';
+  display: block; 
+  text-align: center;
+}
+.item:hover  h1.new-label span{
+  width: auto;
+  display: none;
+}
+.item:hover  h1.new-label:after{
+  width: auto;
+  content: 'Welcome!';
+  display: block; 
+  text-align: center;
+}
+
