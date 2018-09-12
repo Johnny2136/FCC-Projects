@@ -18,4 +18,4 @@ You can build your project by forking this [CodePen pen](https://codepen.io/free
 Once you're done, submit the URL to your working project with all its tests passing.
 Remember to use the Read-Search-Ask method if you get stuck.
 
-Solution: https://codepen.io/johnny2136/pen/aaqYWv
+Solution: [https://codepen.io/johnny2136/pen/aaqYWv](https://codepen.io/johnny2136/pen/aaqYWv)
