@@ -1,17 +1,37 @@
 <style>
- .box {
-       display: flex;
+body { 
+    background: lightblue;
+}
+header h1{ 
+    font-size: 4em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+.box {
+    display: flex;
+    
+   padding:10px;
           }
  .one {
-       flex: 1;
+    flex: 1;
+    border: double;
+   background: gray;
+   padding: 10px;
           }
  .two {
-       flex: 1;
+    flex: 1;
+    border: double;
+   background: white;
+   padding:20px;
           }
 </style>
 <body>
 
 <div id="app"></div>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <script>
 class App extends React.Component {  
@@ -21,7 +41,8 @@ class App extends React.Component {
       markdownInput: '# Heading\n## Sub-heading\n\n[This is a link.](https://www.freecodecamp.org)\n\n`This is inline code.`\n\n```\nThis is a code block.\n```\n\nThis is a list:\n* item 1\n* item 2\n* item 3\n\n> This is a blockquote.\n\n![Image](https://raw.githubusercontent.com/Johnny2136/FCC-Projects/master/images/images.png)\n\n**This is bolded text.**'
     };
     this.handleChange = this.handleChange.bind(this);
-  }  
+  }
+  
   handleChange(event) {
     this.setState({ 
       markdownInput: event.target.value
@@ -32,24 +53,25 @@ class App extends React.Component {
     renderer.link = (href, title, text) => `<a href="${href}" target="_blank">${text}</a>`;    
     return (
       <div className="container-fluid">
-        {/* HEADER */}
+        {/* my header */}
         <header>
-          <h1 className="text-center app-heading">Markdown Previewer</h1>
+          <h1 className="text-center app-heading">GitHub Markdown Previewer</h1>
         </header>
         <main>
           <div class="box">
-            {/* EDIT TAB */}
-            <div class="one" title=" Edit" >
-              <textarea className="form-control" rows="20" aria-label="type GitHub Flavored Markdown text" onChange={(event) => this.handleChange(event)} value={this.state.markdownInput} id="editor"  />
+            {/* Edit box */}
+            <div class="one" title=" Please Edit Here!" >
+              <textarea className="form-control" rows="40" onChange={(event) => this.handleChange(event)} value={this.state.markdownInput} id="editor"/>
             </div>
-            {/* PREVIEW TAB */}
-            <div class="two" title=" Preview">
+            {/* Preview box */}
+            <div class="two" title=" Preview is here!">
               <div className="preview" dangerouslySetInnerHTML={{__html: marked(this.state.markdownInput, {breaks: true, renderer})}} id="preview"></div>
             </div>          
           </div>
         </main>
-        {/* FOOTER */}
-        <footer className="text-center">Coded by <a href="https://johnny2136.github.io/" target="_blank">Johnny2136</a></footer>
+        {/* My footer */}
+        <footer className="text-center">
+<a class="github-button" href="https://github.com/johnny2136" data-size="large" aria-label="Follow @johnny2136 on GitHub">Johnny2136</a></footer>
       </div>
     );
   }
