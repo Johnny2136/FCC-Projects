@@ -1,151 +1,173 @@
-<body> 
-  <div id="app">
-  </div>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<body>
+  <header><h1> Drum Machine </h1></header>
+  <div id="app"></div>
+  <footer className="text-center">
+<a class="github-button" href="https://github.com/johnny2136" data-size="large" aria-label="Follow @johnny2136 on GitHub">Johnny2136</a></footer>
 </body>
 
 <style> 
+body{
+   background-color: 	#00FFFF;
+}
+header{
+  width:auto;
+  text-align: center;
+}
+footer{
+  width:auto;
+  text-align: center;
+}
+#drum-machine{
+  width:25%;
+  height:auto;
+  padding:15px;
+  margin: auto;
+  text-align:center;
+  font-size: 26px;
+  
+}
+
+#container{
+  display:grid;
+  grid-template-columns:auto auto auto;
+  grid-column-gap:5px;
+  grid-row-gap:5px;
+}
+
+.drum-pad{
+  background-color: #4CAF50;
+  border: solid black 1px;
+  color: white;
+  font-size: 35px;
+  border-radius: 50%; 
+  box-shadow: 0 9px #999;
+  cursor: pointer;
+}
+.drum-pad:hover {
+  background-color: #3e8e41;
+}
+
+.drum-pad:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+p{
+ font-size: 15px;
+  margin:auto; 
+}
+
 
 
 </style>
 
 <script> 
-const bank = [{
-    keyCode: 81,
-    keyTrigger: 'Q',
-    id: 'Heater-1',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'
-  }, {
-    keyCode: 87,
-    keyTrigger: 'W',
-    id: 'Heater-2',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3'
-  }, {
-    keyCode: 69,
-    keyTrigger: 'E',
-    id: 'Heater-3',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3'
-  }, {
-    keyCode: 65,
-    keyTrigger: 'A',
-    id: 'Heater-4',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3'
-  }, {
-    keyCode: 83,
-    keyTrigger: 'S',
-    id: 'Clap',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3'
-  }, {
-    keyCode: 68,
-    keyTrigger: 'D',
-    id: 'Open-HH',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3'
-  }, {
-    keyCode: 90,
-    keyTrigger: 'Z',
-    id: "Kick-n'-Hat",
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3'
-  }, {
-    keyCode: 88,
-    keyTrigger: 'X',
-    id: 'Kick',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3'
-  }, {
-    keyCode: 67,
-    keyTrigger: 'C',
-    id: 'Closed-HH',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3'
-  },
-];
+const URL = "https://s3.amazonaws.com/freecodecamp/drums/";
+const SoundBank = {
+  Q : "Heater-1",
+  W : "Kick_n_Hat",
+  E : "Chord_1",
+  A : "Heater-6",
+  S : "punchy_kick_1", 
+  D : "Brk_Snr",
+  Z : "Dry_Ohh",
+  X : "Heater-3",
+  C : "Dsc_Oh"
+};
+
+// This is to pass user test 6 FINALLY!!!!.
+const Test6 = {
+  81 : 'Q',
+  87 : 'W',
+  69 : 'E',
+  65 : 'A',
+  83 : 'S',
+  68 : 'D',
+  90 : 'Z',
+  88 : 'X',
+  67 : 'C'
+};
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.getDisplayKey = this.getDisplayKey.bind(this);
-    this.state = {
-      displayKey: ''
-    }
-  }
-  
-  getDisplayKey(val) {
-    this.setState({
-      displayKey: val
-    });
-  }
+  constructor(props){
+    super();
+    this.state = { 
+      currentSoundId: ''
+    };
+    this.handleClickPlay = this.handleClickPlay.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.playSound = this.playSound.bind(this);
+  };  
+ componentDidMount() {
+   document.addEventListener("keydown", this.handleKeyPress);
+  };  
+  componentWillUnmount() {
+document.removeEventListener("keydown", this.handleKeyPress);
+  };  
+  playSound(){
+    document.getElementById(this.state.currentSoundId).play();
+  };
 
-  render() {
+handleKeyPress(event){    
+  const key = Test6[event.keyCode]; // this is to pass user test 6 FINALLY!!!!
+  const isValidKey = Object.keys(SoundBank).includes(key);
+    this.setState( { currentSoundId: (isValidKey)? key : '' } );
+};      
+handleClickPlay(event){
+  this.setState( { currentSoundId: event.target.children[0].id } );
+};  
+render() {
+    let message = 'Display sound here!';
+    if (this.state.currentSoundId) {
+      message = `Sound is: ${SoundBank[this.state.currentSoundId]}`;
+      this.playSound();  
+    };    
     return (
-      <div id="drum-machine" className="container">
-        <div className="row mx-auto">
-          <Sound value="Q" sendDisplayKey={this.getDisplayKey}/> 
-          <Sound value="W" sendDisplayKey={this.getDisplayKey}/>
-          <Sound value="E" sendDisplayKey={this.getDisplayKey}/>
-        </div>
-        <div className="row mx-auto">
-          <Sound value="A" sendDisplayKey={this.getDisplayKey}/>
-          <Sound value="S" sendDisplayKey={this.getDisplayKey}/>
-          <Sound value="D" sendDisplayKey={this.getDisplayKey}/>
-        </div>
-        <div className="row mx-auto">
-          <Sound value="Z" sendDisplayKey={this.getDisplayKey}/>
-          <Sound value='X' sendDisplayKey={this.getDisplayKey}/>
-          <Sound value="C" sendDisplayKey={this.getDisplayKey}/>
-        </div>
-        <div className="row mx-auto">
-          <div id="display" className="display">
-            <p>{this.state.displayKey}</p>
-          </div>         
+      <div id="drum-machine">
+        <Display currentSoundText={message}/><br/>
+        <div id="container">
+          {
+            Object.keys(SoundBank).map((key) => {
+              return (
+                <DrumPad
+                  name={key} 
+                  soundFile={URL + SoundBank[key] + ".mp3"}
+                  clickplayer={this.handleClickPlay}
+                  key={key}
+                />
+              )
+            })
+          }
         </div>
       </div>
     );
   }
 }
 
-
-class Sound extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.bankObject = bank.find(x => this.props.value == x.keyTrigger);
-  }
-  
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyPress);
-  }
-  
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyPress);
-  }
-  
-  handleKeyPress(event) { 
-    let keyPressed = event.key;
-    if (keyPressed == this.bankObject.keyTrigger.toLowerCase()) {
-      let snd = document.getElementById(this.bankObject.keyTrigger);
-    console.log(snd);
-    snd.play();
-    snd.currentTime=0;
-      this.props.sendDisplayKey(this.bankObject.keyTrigger);
-    }
-  }
-  
-  handleClick(event) {
-    console.clear();
-    console.log(this.bankObject);
-    let snd = document.getElementById(this.bankObject.keyTrigger);
-    console.log(snd);
-    snd.play();
-    snd.currentTime=0;
-    this.props.sendDisplayKey(this.bankObject.keyTrigger);
-  }
-
-  render() {
+function Display(props){
     return (
-    <button className="drum-pad" value={this.props.value} onClick={this.handleClick} id={this.bankObject.id}><audio src={this.bankObject.url} className="clip" id={this.bankObject.keyTrigger} /> 
-      {this.props.value} 
-    </button>
-      )
-  }
+    <div id="display">
+      {props.currentSoundText}
+    </div>
+  )
+}
+
+function DrumPad(props) {
+  return (
+    <div className="drum-pad" id={props.soundFile} onClick={props.clickplayer}>
+      {props.name}
+      <audio className="clip" id={props.name} src={props.soundFile} type="audio/mp3" ></audio>
+    </div>
+  )
 }
 
 ReactDOM.render(<App />, document.getElementById("app"));
+/* Play audio with javascript
+http://stackoverflow.com/questions/9419263/ddg#18628124
+
+The Joy of HTML5 Audio: Tips & Tricks for Easy Sound Embedding
+https://www.elated.com/articles/html5-audio/
+*/   
+  }
 </script>
