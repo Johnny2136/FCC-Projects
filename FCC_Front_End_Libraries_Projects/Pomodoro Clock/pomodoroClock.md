@@ -1,349 +1,318 @@
 ## HTML
 ```HTML
-<div id="root"></div>
-
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<body>
+  <div id='container'>
+    <div id='app'></div>
+  </div>
+  <footer>
+    <a class="github-button" href="https://github.com/johnny2136" data-size="large" aria-label="Follow @johnny2136 on GitHub">Follow @johnny2136</a>
+  </footer>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
 ```
 
 ## CSS
 ```css
 body {
-  background-image: url("img_tree.png");
-    background-repeat: no-repeat;
+  background: #9e161c;
+  color: white;
+  font-size: 30px;
   text-align: center;
+ #container {
+    display: flex;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+    .main-title {
+      font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
+      color: #fff;
+      text-shadow: 3px 3px 0px rgba(0,0,0,2.5), 7px 7px 0px rgba(0,0,0,0.05);
+      font-size: 75px;
+      margin-bottom: 30px;
+    }
+    .length-control {
+      width: 250px;
+    }
+    button {
+      background: none;
+      outline: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    .btn-level,
+    .length-control {
+      display: inline-block;
+  
+    }
+    .timer {
+      border: 10px solid green;
+      margin: 25px auto 20px auto;
+      width: 250px;
+      height: 250px;
+      border-radius: 100%;
+      .timer-wrapper {
+        top: 70%;
+      }
+      #time-left {
+       font-size: 80px;
+      }      
+    }
+  }
 }
-#logo{
-  margin: auto;
-  height: 15px;
-  width: 15px;
+footer{
+  width:auto;
+  padding: 110px;
+  float:botton;
 }
-
 ```
 
 ## JavaScript
 ```javascript
 //REACT & REDUX LIBRARIES SET UP
-const { Component } = React;
-const { createStore, applyMiddleware } = Redux;
-const { Provider } = ReactRedux;
-const { connect } = ReactRedux;
-const { combineReducers } = Redux;
-const { render } = ReactDOM;
-
-//COMPONENTS
-function leadingZero(n) {
-  return n < 10 ? '0' + n : n;
-}
-
-const getTimerDisplay = (timerInSeconds) => ({
-  minutes: Math.floor(timerInSeconds / 60),
-  seconds: leadingZero(timerInSeconds % 60)
-});
-
-function spawnNotification(theBody, theIcon = pomodoroIcon) {
-  return new Notification('Pomodoro', {
-    body: theBody,
-    icon: theIcon
-  });
-}
-
-const App = () =>
- <div className="wrapper">
-  <div>    
-    <h1> Pomodoro Clock </h1>
-  </div>
-    <TimerContainer />
-    <TimerDisplay />
-    <div id="break-label" className="controls-container">
-      <StartStop />
-      <Reset />
-      <TimeControls />
-    </div>
-  </div>;
-
-//ACTIONS
-const pomodoro = 25;
-const TIMERS = {
-  POMODORO: 'POMODORO',
-  BREAK: 'BREAK'
-}
-
-const initialState = {
-  settings: {
-    [TIMERS.POMODORO]: pomodoro, // switch to "break" timer when pomodoro timer === 0
-    [TIMERS.BREAK] : 5 // stop timers when "break" timer === 0
-  },
-  timer: {
-    timer: pomodoro * 60, // in seconds
-    display: {
-      minutes: pomodoro,
-      seconds: '00'
-    },
-    ticking: false,
-    currentTimer: TIMERS.POMODORO,
-    nextTimer: TIMERS.BREAK
+class TimerLengthControl extends React.Component {
+  render() {
+    return (
+      <div className="length-control">
+        <div id={this.props.titleID}>{this.props.title}</div>
+        <button
+          id={this.props.minID}
+          className="btn-level"
+          value="-"
+          onClick={this.props.onClick}
+          >
+          <i className="fa fa-arrow-down fa-3x" />
+        </button>
+        <div id={this.props.lengthID} className="btn-level">
+          {this.props.length}
+        </div>
+        <button
+          id={this.props.addID}
+          className="btn-level"
+          value="+"
+          onClick={this.props.onClick}
+          >
+          <i className="fa fa-arrow-up fa-3x" />
+        </button>
+      </div>
+    );
   }
 }
 
-const settings = (
-  state = initialState.settings,
-  action) => {
-  switch (action.type) {
-    case 'TIMER_INCREMENT':
-      return {...state, [action.timerType]: state[action.timerType] + 1};
-    case 'TIMER_DECREMENT':
-      return {...state, [action.timerType]: state[action.timerType] - 1};
-    case 'SET_TIMER':
-      return {...state, [action.timerType]: action.value};
-    default:
-      return state;
-  }
-}
-
-const timer = (
-  state = initialState.timer,
-  action) => {
-  let timer;
-  switch (action.type) {
-    case 'SET_TIMER':
-      // editing the current timer?
-      if (action.timerType === state.currentTimer) {
-        timer = state.timer - (action.difference * 60); // * 60: in seconds
-        if (timer < 0) timer = 0;
-        return {...state, timer, display: getTimerDisplay(timer)};
-      }
-      return state;
-    case 'TIMER_INCREMENT':
-      if (action.timerType === state.currentTimer) {
-        timer = state.timer + 60;
-        return {...state, timer, display: getTimerDisplay(timer)}
-      }
-      return state;
-    case 'TIMER_DECREMENT':
-      if (action.timerType === state.currentTimer) {
-        timer = state.timer - 60;
-        if (timer < 0) timer = 0;
-        return {...state, timer, display: getTimerDisplay(timer)}
-      }
-      return state;
-    case 'TIMER_TICK':
-      timer = state.timer - 1;
-      if (timer < 0) {
-        timer = action.settings[state.nextTimer] * 60
-        return {
-          ...state,
-          currentTimer: state.nextTimer,
-          nextTimer: state.currentTimer,
-          timer,
-          display: getTimerDisplay(timer)
-        }
-      }
-      return {...state, timer, display: getTimerDisplay(timer)};
-    case 'TIMER_START_STOP':
-      return {...state, ticking: !state.ticking};
-    case 'TIMER_RESET':
-      return initialState.timer;
-    default:
-      return state;
-  }
-}
-
-//REDUCERS
-const reducers = combineReducers({
-  settings,
-  timer
-});
-
-const store = createStore(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
-const onTick = (settings) => ({ type: 'TIMER_TICK', settings });
-
-const onTimerIncrement = (timerType) => ({
-  type: 'TIMER_INCREMENT',
-  timerType
-});
-
-const onTimerDecrement = (timerType) => ({
-  type: 'TIMER_DECREMENT',
-  timerType
-});
-
-const onTimerChange = (value, timerType, difference) => ({
-  type: 'SET_TIMER',
-  value,
-  timerType,
-  difference
-});
-
-const onTimerStartStop = () => ({
-  type: 'TIMER_START_STOP'
-});
-
-const onTimerReset = () => ({
-  type: 'TIMER_RESET'
-});
-
-//PRESENTATION
-
-let TimerDisplay = ({ minutes, seconds, currentTimer }) =>
-  <div className={`timer-container timer-container--${currentTimer}`}>
-    <h1 className="timer">
-      <span className="timer__mins">{minutes}</span>
-      :
-      <span className="timer__secs">{seconds}</span>
-    </h1>
-  </div>;
-TimerDisplay = connect(state => ({
-  minutes: state.timer.display.minutes,
-  seconds: state.timer.display.seconds,
-  currentTimer: state.timer.currentTimer.toLowerCase()
-}))(TimerDisplay)
-
-let TimeControl = ({ name, value, onTimerIncrement, onTimerDecrement, onTimerChange }) =>
-  <div className="control col">
-    <div className="control__label">
-      {name} time
-    </div>
-    <div id="session-decrement" className="time flex-grid">
-      <span id="break-decrement"
-        className="time__control"
-        onClick={() => onTimerDecrement(name, '-')}
-      >
-        -
-      </span>
-      <input
-        type="number"
-        name={name}
-        className="time__input"
-        value={value}
-        min={0}
-        onChange={(e) => onTimerChange(e.target.value, name, value - e.target.value)}
-      />
-      <span
-        className="time__control"
-        onClick={() => onTimerIncrement(name, '+')}
-      >
-        +
-      </span>
-    </div>
-  </div>;
-TimeControl = connect(
-  (state, ownProps) => ({value: state.settings[ownProps.name]}),
-  { onTimerIncrement, onTimerDecrement, onTimerChange })
-(TimeControl);
-
-let StartStop = ({ onTimerStartStop, ticking }) =>
-  <div className="start-stop">
-    <button
-      className={
-        'start-stop__button--' +
-        (ticking ? 'stop' : 'start') +
-        ' start-stop__button button'
-      }
-      onClick={() => onTimerStartStop()}
-    >
-      {ticking ? 'stop' : 'start'}
-    </button>
-  </div>;
-StartStop = connect((state) => ({ticking: state.timer.ticking}), {onTimerStartStop})(StartStop)
-
-let Reset = ({ onTimerReset }) =>
-  <div className="reset">
-    <button className="button-anchor" onClick={() => onTimerReset()}>
-      reset
-    </button>
-  </div>;
-Reset = connect(null, {onTimerReset})(Reset)
-
-
- //TIMER CLASS 
 class Timer extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      brkLength: 5,
+      seshLength: 25,
+      timerState: "stopped",
+      timerType: "Session",
+      timer: 1500,
+      intervalID: "",
+      alarmColor: { color: "white" }
+    };
+    this.setBrkLength = this.setBrkLength.bind(this);
+    this.setSeshLength = this.setSeshLength.bind(this);
+    this.lengthControl = this.lengthControl.bind(this);
+    this.timerControl = this.timerControl.bind(this);
+    this.beginCountDown = this.beginCountDown.bind(this);
+    this.decrementTimer = this.decrementTimer.bind(this);
+    this.phaseControl = this.phaseControl.bind(this);
+    this.warning = this.warning.bind(this);
+    this.buzzer = this.buzzer.bind(this);
+    this.switchTimer = this.switchTimer.bind(this);
+    this.clockify = this.clockify.bind(this);
+    this.reset = this.reset.bind(this);
   }
-
-  componentDidMount() {
-    Notification.requestPermission();
-
-    this.timerID = setInterval(() => {
-      const {ticking, onTick, settings} = this.props
-      if (ticking) {
-        onTick(settings);
+  setBrkLength(e) {
+    this.lengthControl(
+      "brkLength",
+      e.currentTarget.value,
+      this.state.brkLength,
+      "Session"
+    );
+  }
+  setSeshLength(e) {
+    this.lengthControl(
+      "seshLength",
+      e.currentTarget.value,
+      this.state.seshLength,
+      "Break"
+    );
+  }
+  lengthControl(stateToChange, sign, currentLength, timerType) {
+    if (this.state.timerState == "running") return;
+    if (this.state.timerType == timerType) {
+      if (sign == "-" && currentLength != 1) {
+        this.setState({ [stateToChange]: currentLength - 1 });
+      } else if (sign == "+" && currentLength != 60) {
+        this.setState({ [stateToChange]: currentLength + 1 });
       }
-    }, 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const nextTimer = nextProps.currentTimer
-    if (this.props.currentTimer !== nextTimer) {
-      beep();
-      spawnNotification('bla', pomodoroIcon)
-
-      if (Notification.permission === 'granted') {
-        spawnNotification(
-          nextTimer === TIMERS.BREAK
-            ? 'Take a break'
-            : 'Get back to work'
-        );
+    } else {
+      if (sign == "-" && currentLength != 1) {
+        this.setState({
+          [stateToChange]: currentLength - 1,
+          timer: currentLength * 60 - 60
+        });
+      } else if (sign == "+" && currentLength != 60) {
+        this.setState({
+          [stateToChange]: currentLength + 1,
+          timer: currentLength * 60 + 60
+        });
       }
     }
   }
-
-  shouldComponentUpdate() {
-    return false;
+  timerControl() {
+    let control =
+        this.state.timerState == "stopped"
+    ? (this.beginCountDown(), this.setState({ timerState: "running" }))
+    : (this.setState({ timerState: "stopped" }),
+       this.state.intervalID && this.state.intervalID.cancel());
   }
-  
-//RENDER
+  beginCountDown() {
+    this.setState({
+      intervalID: accurateInterval(() => {
+        this.decrementTimer();
+        this.phaseControl();
+      }, 1000)
+    });
+  }
+  decrementTimer() {
+    this.setState({ timer: this.state.timer - 1 });
+  }
+  phaseControl() {
+    let timer = this.state.timer;
+    this.warning(timer);
+    this.buzzer(timer);
+    if (timer < 0) {
+      this.state.timerType == "Session"
+        ? (this.state.intervalID && this.state.intervalID.cancel(),
+           this.beginCountDown(),
+           this.switchTimer(this.state.brkLength * 60, "Break"))
+      : (this.state.intervalID && this.state.intervalID.cancel(),
+         this.beginCountDown(),
+         this.switchTimer(this.state.seshLength * 60, "Session"));
+    }
+  }
+  warning(_timer) {
+    let warn =
+        _timer < 61
+    ? this.setState({ alarmColor: { color: "green" } })
+    : this.setState({ alarmColor: { color: "white" } });
+  }
+  buzzer(_timer) {
+    if (_timer === 0) {
+      this.audioBeep.play();
+    }
+  }
+  switchTimer(num, str) {
+    this.setState({
+      timer: num,
+      timerType: str,
+      alarmColor: { color: "white" }
+    });
+  }
+  clockify() {
+    let minutes = Math.floor(this.state.timer / 60);
+    let seconds = this.state.timer - minutes * 60;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    return minutes + ":" + seconds;
+  }
+  reset() {
+    this.setState({
+      brkLength: 5,
+      seshLength: 25,
+      timerState: "stopped",
+      timerType: "Session",
+      timer: 1500,
+      intervalID: "",
+      alarmColor: { color: "white" }
+    });
+    this.state.intervalID && this.state.intervalID.cancel();
+    this.audioBeep.pause();
+    this.audioBeep.currentTime = 0;
+  }
   render() {
-    return null;
+    return (
+      <div>
+        <div className="main-title">Pomodoro Clock</div>
+        <TimerLengthControl
+          titleID="break-label"
+          minID="break-decrement"
+          addID="break-increment"
+          lengthID="break-length"
+          title="Break Length"
+          onClick={this.setBrkLength}
+          length={this.state.brkLength}
+          />
+        <TimerLengthControl
+          titleID="session-label"
+          minID="session-decrement"
+          addID="session-increment"
+          lengthID="session-length"
+          title="Session Length"
+          onClick={this.setSeshLength}
+          length={this.state.seshLength}
+          />
+        <div className="timer" style={this.state.alarmColor}>
+          <div className="timer-wrapper">
+            <div id="timer-label">
+              <br />
+              {this.state.timerType}
+            </div>
+            <br />
+            <div id="time-left">{this.clockify()}</div>
+          </div>
+        </div>
+        <div className="timer-control">
+          <button id="start_stop" onClick={this.timerControl}>
+            <i className="fa fa-play fa-2x" />
+            <i className="fa fa-pause fa-2x" />
+          </button>
+          <button id="reset" onClick={this.reset}>
+            <i className="fa fa-refresh fa-2x" />
+          </button>
+        </div>
+        <audio
+          id="beep"
+          preload="auto"
+          src="https://raw.githubusercontent.com/Johnny2136/FCC-Projects/master/images/ambulancelip36.wav"
+          ref={audio => {
+            this.audioBeep = audio;
+          }}
+          />
+      </div>
+    );
   }
 }
-const TimerContainer = connect(
-  state => ({
-    currentTimer: state.timer.currentTimer,
-    ticking: state.timer.ticking,
-    settings: state.settings,
-  }),
-  { onTick })
-(Timer);
+ReactDOM.render(<Timer />, document.getElementById("app"));
 
-
-
-const TimeControls = () =>
-  <div id="session-label" className="timer-settings flex-grid">
-    <TimeControl name={TIMERS.BREAK} />
-    <TimeControl name={TIMERS.POMODORO} />
-  </div>;
-
-
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
-
-//WRAP WITH STORE AND RENDER
-
-const createStoreWithMiddleware = applyMiddleware()(createStore);
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
-  , document.querySelector('.root'));
-
+//Acurate timeing curtisy of Accurate_Interval.js
+// Thanks Squeege! For the elegant answer provided to this question:
+// http://stackoverflow.com/questions/8173580/setinterval-timing-slowly-drifts-away-from-staying-accurate
+// Github: https://gist.github.com/Squeegy/1d99b3cd81d610ac7351
+// Slightly modified to accept 'normal' interval/timeout format (func, time).    */
+(function() {
+  window.accurateInterval = function(fn, time) {
+    var cancel, nextAt, timeout, wrapper;
+    nextAt = new Date().getTime() + time;
+    timeout = null;
+    wrapper = function() {
+      nextAt += time;
+      timeout = setTimeout(wrapper, nextAt - new Date().getTime());
+      return fn();
+    };
+    cancel = function() {
+      return clearTimeout(timeout);
+    };
+    timeout = setTimeout(wrapper, nextAt - new Date().getTime());
+    return {
+      cancel: cancel
+    };
+  };
+}.call(this));
 ```
 
 ## Added to CodePen Resources:
