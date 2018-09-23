@@ -17,37 +17,41 @@
 body {
   background: #9e161c;
   color: white;
-  font-size: 30px;
+  font-size: 25px;
   text-align: center;
- #container {
+  #container {
     display: flex;
     height: 90vh;
     justify-content: center;
     align-items: center;
     .main-title {
-      font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
+      font: 200 50px/2.5 "Pacifico", Helvetica, sans-serif;
       color: #fff;
-      text-shadow: 3px 3px 0px rgba(0,0,0,2.5), 7px 7px 0px rgba(0,0,0,0.05);
+      text-shadow: 3px 3px 0px rgba(0, 0, 0, 2.5),
+        7px 7px 0px rgba(0, 0, 0, 0.05);
       font-size: 75px;
-      margin-bottom: 30px;
+      margin-bottom: 3px;
     }
     .length-control {
       width: 250px;
     }
     button {
       background: none;
-      outline: none;
+      outline: black;
       border: none;
-      color: white;
+      color: green;
       cursor: pointer;
+      text-shadow: 1px 2px 2px #000;
     }
-    .btn-level,
+    .btn-level,    
     .length-control {
+      color: #fff;
+      padding:10px;
       display: inline-block;
-  
     }
     .timer {
       border: 10px solid green;
+      box-shadow: 1px 5px 1px #000;
       margin: 25px auto 20px auto;
       width: 250px;
       height: 250px;
@@ -56,20 +60,21 @@ body {
         top: 70%;
       }
       #time-left {
-       font-size: 80px;
+        font-size: 80px;
       }      
     }
   }
 }
-footer{
-  width:auto;
-  padding: 110px;
-  float:botton;
+footer {
+  width: auto;
+  padding: 175px;
+  float: botton;
 }
 ```
 
 ## JavaScript
 ```javascript
+//REACT & REDUX LIBRARIES SET UP
 //REACT & REDUX LIBRARIES SET UP
 class TimerLengthControl extends React.Component {
   render() {
@@ -82,7 +87,7 @@ class TimerLengthControl extends React.Component {
           value="-"
           onClick={this.props.onClick}
           >
-          <i className="fa fa-arrow-down fa-3x" />
+          <i className="fa fa-minus fa-2x" />
         </button>
         <div id={this.props.lengthID} className="btn-level">
           {this.props.length}
@@ -93,7 +98,7 @@ class TimerLengthControl extends React.Component {
           value="+"
           onClick={this.props.onClick}
           >
-          <i className="fa fa-arrow-up fa-3x" />
+          <i className="fa fa-plus fa-2x" />
         </button>
       </div>
     );
@@ -105,7 +110,7 @@ class Timer extends React.Component {
     super(props);
     this.state = {
       brkLength: 5,
-      seshLength: 25,
+      sessLength: 25,
       timerState: "stopped",
       timerType: "Session",
       timer: 1500,
@@ -113,7 +118,7 @@ class Timer extends React.Component {
       alarmColor: { color: "white" }
     };
     this.setBrkLength = this.setBrkLength.bind(this);
-    this.setSeshLength = this.setSeshLength.bind(this);
+    this.setSessLength = this.setSessLength.bind(this);
     this.lengthControl = this.lengthControl.bind(this);
     this.timerControl = this.timerControl.bind(this);
     this.beginCountDown = this.beginCountDown.bind(this);
@@ -133,11 +138,11 @@ class Timer extends React.Component {
       "Session"
     );
   }
-  setSeshLength(e) {
+  setSessLength(e) {
     this.lengthControl(
-      "seshLength",
+      "sessLength",
       e.currentTarget.value,
-      this.state.seshLength,
+      this.state.sessLength,
       "Break"
     );
   }
@@ -192,7 +197,7 @@ class Timer extends React.Component {
            this.switchTimer(this.state.brkLength * 60, "Break"))
       : (this.state.intervalID && this.state.intervalID.cancel(),
          this.beginCountDown(),
-         this.switchTimer(this.state.seshLength * 60, "Session"));
+         this.switchTimer(this.state.sessLength * 60, "Session"));
     }
   }
   warning(_timer) {
@@ -223,7 +228,7 @@ class Timer extends React.Component {
   reset() {
     this.setState({
       brkLength: 5,
-      seshLength: 25,
+      sessLength: 25,
       timerState: "stopped",
       timerType: "Session",
       timer: 1500,
@@ -253,8 +258,8 @@ class Timer extends React.Component {
           addID="session-increment"
           lengthID="session-length"
           title="Session Length"
-          onClick={this.setSeshLength}
-          length={this.state.seshLength}
+          onClick={this.setSessLength}
+          length={this.state.sessLength}
           />
         <div className="timer" style={this.state.alarmColor}>
           <div className="timer-wrapper">
@@ -267,12 +272,12 @@ class Timer extends React.Component {
           </div>
         </div>
         <div className="timer-control">
-          <button id="start_stop" onClick={this.timerControl}>
-            <i className="fa fa-play fa-2x" />
-            <i className="fa fa-pause fa-2x" />
+          <button id="start_stop"  onClick={this.timerControl}>
+            <i className="fa fa-play fa-3x" />
+            <i className="fa fa-pause fa-3x" />
           </button>
           <button id="reset" onClick={this.reset}>
-            <i className="fa fa-refresh fa-2x" />
+            <i className="fa fa-refresh fa-3x" />
           </button>
         </div>
         <audio
@@ -321,13 +326,11 @@ ReactDOM.render(<Timer />, document.getElementById("app"));
 * None
 
 ### CSS
-* https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css
+* https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
 
 ### JavaScript
 * https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react.js
 * https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react-dom.js
-* https://cdnjs.cloudflare.com/ajax/libs/redux/3.0.4/redux.min.js
-* https://cdnjs.cloudflare.com/ajax/libs/react-redux/4.0.0/react-redux.min.js
 * https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js
 
 
