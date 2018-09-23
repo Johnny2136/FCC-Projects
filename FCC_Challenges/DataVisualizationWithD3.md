@@ -1,4 +1,6 @@
-**Data Visualization with D3: Add Document Elements with D3**
+# Data Visualization with D3:
+
+**Add Document Elements with D3**
 
 D3 has several methods that let you add and change elements in your document.
 
@@ -39,15 +41,17 @@ Use the select method to select the `body` tag in the document. Then append an `
 ```
 
 
-**Data Visualization with D3: Select a Group of Elements with D3**
+**Select a Group of Elements with D3**
 
+**The Lesson:**
 D3 also has the `selectAll()` method to select a group of elements. It returns an array of HTML nodes for all the items in the document that match the input string. Here's an example to select all the anchor tags in a document:
 
+**Example:**
 `const anchors = d3.selectAll("a");`
 
 Like the `select()` method, `selectAll()` supports method chaining, and you can use it with other methods.
 
-
+**Challange Instructions:**
 Select all of the `li` tags in the document, and change their text to "list item" by chaining the `.text()` method.
 
 *notes:* I would have made the following example:
@@ -63,7 +67,7 @@ Select all of the `li` tags in the document, and change their text to "list item
   </script>
 </body>
 ```
-Resources: https://d3indepth.com/selections/
+*Resources:* https://d3indepth.com/selections/
 
 **My solution**
 ```JavaScript
@@ -81,3 +85,29 @@ Resources: https://d3indepth.com/selections/
   </script>
 </body>
 ```
+
+
+**Challange**
+
+**The Lesson:**
+
+**Example:**
+```JavaScript
+<body>
+  <ul></ul>
+  <script>
+ 
+  </script>
+</body>
+```
+**Challange Instructions:**
+
+*Resources:* 
+
+**My solution**
+```JavaScript
+
+```
+
+
+
