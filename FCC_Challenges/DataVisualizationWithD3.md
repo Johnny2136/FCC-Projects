@@ -1,7 +1,8 @@
 # Data Visualization with D3:
 
-**Add Document Elements with D3**
+## Add Document Elements with D3
 
+**The Lesson:**
 D3 has several methods that let you add and change elements in your document.
 
 The `select()` method selects one element from the document. It takes an argument for the name of the element you want and returns an HTML node for the first element in the document that matches the name. Here's an example:
@@ -16,6 +17,7 @@ The `append()` method takes an argument for the element you want to add to the d
 
 The `text()` method either sets the text of the selected node, or gets the current text. To set the value, you pass a string as an argument inside the parentheses of the method.
 
+**Example:**
 Here's an example that selects an unordered list, appends a list item, and adds text:
 ```JavaScript
 d3.select("ul")
@@ -24,7 +26,7 @@ d3.select("ul")
 ```
 D3 allows you to chain several methods together with periods to perform a number of actions in a row.
 
-
+**Challange Instructions:**
 Use the select method to select the `body` tag in the document. Then append an `h1` tag to it, and add the text "Learning D3" into the `h1` element.
 
 **MySolution**
@@ -41,7 +43,7 @@ Use the select method to select the `body` tag in the document. Then append an `
 ```
 
 
-**Select a Group of Elements with D3**
+## Select a Group of Elements with D3
 
 **The Lesson:**
 D3 also has the `selectAll()` method to select a group of elements. It returns an array of HTML nodes for all the items in the document that match the input string. Here's an example to select all the anchor tags in a document:
@@ -87,7 +89,7 @@ Select all of the `li` tags in the document, and change their text to "list item
 ```
 
 
-**Challange**
+## Challange
 
 **The Lesson:**
 
