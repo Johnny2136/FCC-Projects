@@ -212,24 +212,173 @@ Add the style() method to the code in the editor to make all the displayed text 
 ```
 
 
-## Challange
+## Change Styles Based on Data
 
 **The Lesson:**
+D3 is about visualization and presentation of data. It's likely you'll want to change the styling of elements based on the data. You can use a callback function in the style() method to change the styling for different elements.
 
 **Example:**
-```JavaScript
-<body>
-  <ul></ul>
-  <script>
- 
-  </script>
-</body>ve been
-```
-**Challange Instructions:**
+For example, you may want to color a data point blue if has a value less than 20, and red otherwise. You can use a callback function in the `style()` method and include the conditional logic. The callback function uses the d parameter to represent the data point:
 
-*Resources:* 
+```
+selection.style("color", (d) => {
+  /* Logic that returns the color based on a condition */
+});
+```
+The `style()` method is not limited to setting the color - it can be used with other CSS properties as well.
+
+**Challange Instructions:**
+Add the `style()` method to the code in the editor to set the color of the `h2` elements conditionally. Write the callback function so if the data value is less than 20, it returns "red", otherwise it returns "green".
+
+Note
+You can use if-else logic, or the ternary operator.
+*Resources:* https://stackoverflow.com/questions/45593251/d3-setting-style-conditionally-with-immediately-invoked-arrow-function-and-tern/45654334
 
 **My solution**
 ```JavaScript
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];    
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      .text((d) => (d + " USD"))
+      // Add your code below this line
+      .style("color", d => d < 20 ? "red" : "green");      
+      // Add your code above this line
+  </script>
+</body>
+```
+
+
+## Add Classes with D3
+
+**The Lesson:**
+Using a lot of inline styles on HTML elements gets hard to manage, even for smaller apps. It's easier to add a class to elements and style that class one time using CSS rules. D3 has the `attr()` method to add any HTML attribute to an element, including a class name.
+
+The `attr()` method works the same way that `style()` does. It takes comma-separated values, and can use a callback function. 
+
+**Example:**
+Here's an example to add a class of "container" to a selection:
+
+```
+selection.attr("class", "container");
+```
+
+**Challange Instructions:**
+Add the `style()` method to the code in the editor to set the color of the `h2` elements conditionally. Write the callback function so if the data value is less than 20, it returns "red", otherwise it returns "green".
+
+Note
+You can use if-else logic, or the ternary operator.
+*Resources:* https://stackoverflow.com/questions/45593251/d3-setting-style-conditionally-with-immediately-invoked-arrow-function-and-tern/45654334
+
+**My solution**
+```JavaScript
+<style>
+  .bar {
+    width: 25px;
+    height: 100px;
+    display: inline-block;
+    background-color: blue;
+  }
+</style>
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    d3.select("body").selectAll("div")
+      .data(dataset)
+      .enter()
+      .append("div")
+      // Add your code below this line      
+      .attr("class", "bar");      
+      // Add your code above this line
+  </script>
+</body>
+```
+
+
+## Add Classes with D3
+**Example:**
+`selection.style("cssProperty", (d) => d + '');`
+
+**Challange Instructions:**
+Add the `style()` method to the code in the editor to set the `height` property for each element. Use a callback function to return the value of the data point with the string "px" added to it.
+
+*Resources:* easy...
+
+**My solution**
+```html
+<style>
+  .bar {
+    width: 25px;
+    height: 100px;
+    display: inline-block;
+    background-color: blue;
+  }
+</style>
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];    
+    d3.select("body").selectAll("div")
+      .data(dataset)
+      .enter()
+      .append("div")
+      .attr("class", "bar")
+      // Add your code below this line      
+      .style("height", (d) => d + 'px')      
+      // Add your code above this line
+  </script>
+</body>
+```
+
+
+## Change the Presentation of a Bar Chart
+**Example:** 
+none
+
+**Challange Instructions:**
+First, add a margin of 2px to the bar class in the style tag. Next, change the callback function in the style() method so it returns a value 10 times the original data value (plus the "px").
+
+Note
+Multiplying each data point by the same constant only alters the scale. It's like zooming in, and it doesn't change the meaning of the underlying data.
+
+*Resources:*
+**My solution**
+```html
+<style>
+  .bar {
+    width: 25px;
+    height: 100px;
+    /* Add your code below this line */
+    margin: 2px;
+    /* Add your code above this line */
+    display: inline-block;
+    background-color: blue;
+  }
+</style>
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];    
+    d3.select("body").selectAll("div")
+      .data(dataset)
+      .enter()
+      .append("div")
+      .attr("class", "bar")
+      // Add your code below this line
+      .style("height", (d) => (d * 10 + "px"));      
+      // Add your code above this line
+  </script>
+</body> 
+```
+
+
+## Add Classes with D3
+**Example:**
+**Challange Instructions:**
+*Resources:*
+**My solution**
+```html
 
 ```
