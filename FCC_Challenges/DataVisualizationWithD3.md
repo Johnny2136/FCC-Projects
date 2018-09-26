@@ -374,6 +374,58 @@ Multiplying each data point by the same constant only alters the scale. It's lik
 ```
 
 
+## Learn About SVG in D3
+**Example:**
+none
+```JS
+//Make an SVG Container
+ var svgContainer = d3.select("body").append("svg")
+                                     .attr("width", 200)
+                                     .attr("height", 200);
+ ```
+The above would have been nice.
+
+**Challange Instructions:**
+Add an svg node to the body using `append()`. Give it a width attribute set to the provided w constant and a height attribute set to the provided `h` constant using the `attr()` method for each. You'll see it in the output because there's a background-color of pink applied to it in the style tag.
+
+Note
+Width and height attributes do not have units. This is the building block of scaling - the element will always have a 5:1 `width` to `height` ratio, no matter what the zoom level is.
+
+*Resources:* https://stackoverflow.com/questions/10883523/d3-how-to-change-the-width-and-length-of-svg
+
+**My solution**
+```html
+<style>
+  svg {
+    background-color: pink;
+  }
+</style>
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];    
+    const w = 500;
+    const h = 100;    
+    const svg = d3.select("body")
+    // Add your code below this line
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);                  
+    // Add your code above this line
+  </script>
+</body>
+```
+
+
+## Add Classes with D3
+**Example:**
+**Challange Instructions:**
+*Resources:*
+**My solution**
+```html
+
+```
+
+
 ## Add Classes with D3
 **Example:**
 **Challange Instructions:**
