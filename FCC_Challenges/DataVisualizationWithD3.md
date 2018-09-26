@@ -416,13 +416,37 @@ Width and height attributes do not have units. This is the building block of sca
 ```
 
 
-## Add Classes with D3
+## Display Shapes with SVG
 **Example:**
+none, a freaking example would have been awesome!
+
 **Challange Instructions:**
+Add a rect shape to the svg using append(), and give it a width attribute of 25 and height attribute of 100. Also, give the rect x and y attributes each set to 0.
+
 *Resources:*
+
 **My solution**
 ```html
-
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h)
+                  // Add your code below this line
+                  .append("rect")
+                  .attr("x", 0)
+                  .attr("y", 0)
+                  .attr("width", 25)
+                  .attr("height", 100);           
+                  // Add your code above this line
+  </script>
+</body>
 ```
 
 
