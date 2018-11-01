@@ -552,13 +552,289 @@ Each bar has a width of 25, so increasing each x value by 30 adds some space bet
 ```
 
 
-## Add Classes with D3
+## Dynamically Change the Height of Each Bar
 **Example:**
+The height of each bar can be set to the value of the data point in the array, similar to how the x value was set dynamically.
+```javascript
+selection.attr("property", (d, i) => {
+  /* 
+  * d is the data point value
+  * i is the index of the data point in the array
+  */
+})
+```
+
 **Challange Instructions:**
+Change the callback function for the height attribute to return the data value times 3.
+
+*Note*
+Remember that multiplying all data points by the same constant scales the data (like zooming in). It helps to see the differences between bar values in this example.
 *Resources:*
 **My solution**
 ```html
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", (d, i) => {
+         // Add your code below this line
+         
+         return d*3;
+         
+         // Add your code above this line
+       });
+  </script>
+</body>
+```
 
+##  Invert SVG Elements
+**Example:**
+The y coordinate that is y = heightOfSVG - heightOfBar would place the bars right-side-up.
+
+**Challange Instructions:**
+Change the callback function for the y attribute to set the bars right-side-up. Remember that the height of the bar is 3 times the data value d.
+
+*Note*
+In general, the relationship is `y = h - m * d`, where `m` is the constant that scales the data points.
+*Resources:*
+**My solution**
+```html
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => {
+         // Add your code below this line
+         
+         return h-3*d;
+          
+         // Add your code above this line
+       })
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d);
+  </script>
+</body>
+```
+
+## Change the Color of an SVG Element
+**Example:**
+In SVG, a rect shape is colored with the fill attribute. It supports hex codes, color names, and rgb values, as well as more complex options like gradients and transparency. (not a good example!!!)
+
+**Challange Instructions:**
+Add an attr() method to set the "fill" of all the bars to the color "navy".
+
+*Resources:*
+**My solution**
+```html
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - 3 * d)
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d)
+       // Add your code below this line
+
+       .attr("fill","navy");       
+       
+       // Add your code above this line
+  </script>
+</body>
+```
+
+## Add Labels to D3 Elements
+**Example:**
+No example...
+
+**Challange Instructions:**
+The code in the editor already binds the data to each new text element. First, append text nodes to the svg. Next, add attributes for the x and y coordinates. They should be calculated the same way as the rect ones, except the y value for the text should make the label sit 3 units higher than the bar. Finally, use the D3 text() method to set the label equal to the data point value.
+
+*Note*
+For the label to sit higher than the bar, decide if the y value for the text should be 3 greater or 3 less than the y value for the bar.
+*Resources:*
+**My solution**
+```html
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - 3 * d)
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d)
+       .attr("fill", "navy");
+    
+    svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       // Add your code below this line
+
+       .append("text")
+       .text((d) => d)
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - (3 * d) - 3)
+
+       // Add your code above this line
+  </script>
+<body>
+```
+
+## Style D3 Labels
+**Example:**
+D3 methods can add styles to the bar labels. The fill attribute sets the color of the text for a text node. The style() method sets CSS rules for other styles, such as "font-family" or "font-size".
+
+**Challange Instructions:**
+Set the font-size of the text elements to 25px, and the color of the text to red.
+
+*Resources:*
+https://www.dashingd3js.com/svg-text-element
+
+**My solution**
+```html
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - 3 * d)
+       .attr("width", 25)
+       .attr("height", (d, i) => d * 3)
+       .attr("fill", "navy");
+    
+    svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       .append("text")
+       .text((d) => d)
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - (3 * d) - 3)
+       // Add your code below this line
+
+       .attr("font-size", "25px")
+       .attr("fill", "red");       
+       
+       // Add your code above this line
+  </script>
+</body>
+```
+
+## Add a Hover Effect to a D3 Element
+**Example:**
+You set the CSS class on the SVG elements with the attr() method. Then the :hover pseudo-class for your new class holds the style rules for any hover effects.
+
+**Challange Instructions:**
+Use the attr() method to add a class of bar to all the rect elements. This changes the fill color of the bar to brown when you mouse over it.
+
+*Resources:*
+**My solution**
+```html
+<style>
+  .bar:hover {
+    fill: brown;
+  }
+</style>
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+    
+    const w = 500;
+    const h = 100;
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - 3 * d)
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d)
+       .attr("fill", "navy")
+       // Add your code below this line
+
+        .attr("class", "bar")       
+       
+       // Add your code above this line
+    
+    svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       .append("text")
+       .text((d) => d)
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - (3 * d) - 3);
+       
+  </script>
+</body>
 ```
 
 ## Add Classes with D3
