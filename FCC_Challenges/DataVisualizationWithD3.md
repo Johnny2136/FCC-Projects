@@ -1149,6 +1149,205 @@ You can chain the domain() and range() methods onto the scale variable.
 </body>
 ```
 
+## Use the d3.max and d3.min Functions to Find Minimum and Maximum Values in a Dataset
+**Example:**
+D3 has two methods - min() and max() to return this information. Here's an example:
+```
+    const exampleData = [34, 234, 73, 90, 6, 52];
+    d3.min(exampleData) // Returns 6
+    d3.max(exampleData) // Returns 234
+```
+A dataset may have nested arrays, like the [x, y] coordinate pairs that were in the scatter plot example. In that case, you need to tell D3 how to calculate the maximum and minimum.
+
+Fortunately, both the min() and max() methods take a callback function.
+
+In this example, the callback function's argument d is for the current inner array. The callback needs to return the element from the inner array (the x or y value) over which you want to compute the maximum or minimum. Here's an example for how to find the min and max values with an array of arrays:
+```
+    const locationData = [[1, 7],[6, 3],[8, 3]];
+    // Returns the smallest number out of the first elements
+    const minX = d3.min(locationData, (d) => d[0]);
+    // minX compared 1, 6, and 8 and is set to 1
+```
+
+**Challange Instructions:**
+The positionData variable holds a 3-dimensional (3D) array. Use a D3 method to find the maximum value of the z coordinate (the third value) from the arrays and save it in the output variable.
+
+*Note*
+Fun fact - D3 can plot 3D arrays.
+
+*Resources:*
+
+**My solution**
+```html
+<body>
+  <script>
+    const positionData = [[1, 7, -4],[6, 3, 8],[2, 8, 3]]
+    // Add your code below this line
+    
+    const output = d3.max(positionData, (d) => d[2]); // Change this line
+    
+    // Add your code above this line
+    
+    d3.select("body")
+      .append("h2")
+      .text(output)
+  </script>
+</body>
+```
+
+## Use Dynamic Scales
+**Example:**
+```javascript
+const dataset = [
+  [ 34, 78 ],
+  [ 109, 280 ],
+  [ 310, 120 ],
+  [ 79, 411 ],
+  [ 420, 220 ],
+  [ 233, 145 ],
+  [ 333, 96 ],
+  [ 222, 333 ],
+  [ 78, 320 ],
+  [ 21, 123 ]
+];
+const w = 500;
+const h = 500;
+
+// Padding between the SVG canvas boundary and the plot
+const padding = 30;
+const xScale = d3.scaleLinear()
+  .domain([0, d3.max(dataset, (d) => d[0])])
+  .range([padding, w - padding]);
+```
+
+**Challange Instructions:**
+Use the yScale variable to create a linear y-axis scale. The domain should start at zero and go to the maximum y value in the set. The range should use the SVG height (h) and include padding.
+
+*Note*
+Remember to keep the plot right-side-up. When you set the range for the y coordinates, the higher value (height minus padding) is the first argument, and the lower value is the second argument.
+
+*Resources:*
+
+**My solution**
+```html
+<body>
+  <script>
+    const dataset = [
+                  [ 34,    78 ],
+                  [ 109,   280 ],
+                  [ 310,   120 ],
+                  [ 79,    411 ],
+                  [ 420,   220 ],
+                  [ 233,   145 ],
+                  [ 333,   96 ],
+                  [ 222,   333 ],
+                  [ 78,    320 ],
+                  [ 21,    123 ]
+                ];
+    
+    const w = 500;
+    const h = 500;
+    
+    // Padding between the SVG canvas boundary and the plot
+    const padding = 30;
+    
+    // Create an x and y scale
+    
+    const xScale = d3.scaleLinear()
+                    .domain([0, d3.max(dataset,(d)=> d[0])])
+                    .range([padding, w - padding]);
+    
+    // Add your code below this line
+    
+    const yScale = d3.scaleLinear()
+          .domain([0, d3.max(dataset,(d)=>d[1])])
+          .range([w-padding, padding]);
+                     
+                     
+    // Add your code above this line
+    
+    const output = yScale(411); // Returns 30
+    d3.select("body")
+      .append("h2")
+      .text(output)
+  </script>
+</body>
+```
+
+## Add Classes with D3
+**Example:**
+```
+shape
+  .attr("x", (d) => xScale(d[0]))
+```
+**Challange Instructions:**
+Use xScale and yScale to position both the circle and text shapes onto the SVG canvas. For the circles, apply the scales to set the cx and cy attributes. Give them a radius of 5 units, too.
+
+For the text elements, apply the scales to set the x and y attributes. The labels should be offset to the right of the dots. To do this, add 10 units to the x data value before passing it to the xScale.
+
+*Resources:*
+
+**My solution**
+```html
+<body>
+  <script>
+    const dataset = [
+                  [ 34,     78 ],
+                  [ 109,   280 ],
+                  [ 310,   120 ],
+                  [ 79,   411 ],
+                  [ 420,   220 ],
+                  [ 233,   145 ],
+                  [ 333,   96 ],
+                  [ 222,    333 ],
+                  [ 78,    320 ],
+                  [ 21,   123 ]
+                ];
+    
+    const w = 500;
+    const h = 500;
+    const padding = 60;
+    
+    const xScale = d3.scaleLinear()
+                     .domain([0, d3.max(dataset, (d) => d[0])])
+                     .range([padding, w - padding]);
+    
+    const yScale = d3.scaleLinear()
+                     .domain([0, d3.max(dataset, (d) => d[1])])
+                     .range([h - padding, padding]);
+    
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+    
+    svg.selectAll("circle")
+       .data(dataset)
+       .enter()
+       .append("circle")
+       // Add your code below this line
+       .attr("cx", (d) => xScale(d[0]))
+       .attr("cy", (d) => yScale(d[1]))       
+       .attr('r', 5);
+       
+       // Add your code above this line
+       
+    svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       .append("text")
+       .text((d) =>  (d[0] + ", "
+ + d[1]))
+       // Add your code below this line
+       
+       .attr("x", (d) => xScale(d[0] + 10))
+       .attr("y", (d) => yScale(d[1]))
+       
+       // Add your code above this line
+  </script>
+</body>
+```
+
 ## Add Classes with D3
 **Example:**
 **Challange Instructions:**
