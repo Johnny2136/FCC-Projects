@@ -1105,6 +1105,50 @@ Change the scale variable to create a linear scale. Then set the output variable
 </body>
 ```
 
+## Set a Domain and a Range on a Scale
+**Example:**
+```javascript
+// Set a domain
+// The domain covers the set of input values
+scale.domain([50, 480]);
+// Set a range
+// The range covers the set of output values
+scale.range([10, 500]);
+scale(50) // Returns 10
+scale(480) // Returns 500
+scale(325) // Returns 323.37
+scale(750) // Returns 807.67
+d3.scaleLinear()
+```
+
+**Challange Instructions:**
+Create a scale and set its domain to [250, 500] and range to [10, 150].
+
+*Note*
+You can chain the domain() and range() methods onto the scale variable.
+
+*Resources:*
+
+**My solution**
+```html
+<body>
+  <script>
+    // Add your code below this line
+    const scale = d3.scaleLinear();
+    
+    scale.domain([250,500]);
+    scale.range([10,150]);
+    
+    
+    // Add your code above this line
+    const output = scale(50);
+    d3.select("body")
+      .append("h2")
+      .text(output);
+  </script>
+</body>
+```
+
 ## Add Classes with D3
 **Example:**
 **Challange Instructions:**
