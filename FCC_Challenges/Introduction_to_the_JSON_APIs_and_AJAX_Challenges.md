@@ -608,14 +608,4 @@ Update the code to create and send a "POST" request. Then enter your name in inp
 </p>
 ```
 
-## new
-**Example:**
-```
-
-```
-**Challange instruction:**
-
-**MySolution:**
-```html
-
-```
+## END
