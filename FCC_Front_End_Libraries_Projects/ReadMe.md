@@ -8,6 +8,6 @@ Use any mix of HTML, JavaScript, CSS, Bootstrap, SASS, React, Redux, and jQuery 
 
 - [x] Build a Drum Machine
 
-- [ ] Build a JavaScript Calculator
+- [X] Build a JavaScript Calculator
 
-- [ ] Build a Pomodoro Clock
+- [X] Build a Pomodoro Clock
