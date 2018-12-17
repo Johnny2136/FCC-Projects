@@ -496,6 +496,51 @@ Add code to filter the json data to remove the cat with the "id" value of 1.
 </p>
 ```
 
+## Get Geolocation Data to Find A User's GPS Coordinates
+**Example:**
+```
+if (navigator.geolocation){
+  navigator.geolocation.getCurrentPosition(function(position) {
+    document.getElementById('data').innerHTML="latitude: "+ position.coords.latitude + "<br>longitude: " + position.coords.longitude;
+  });
+}
+```
+**Challange instruction:**
+Add the example code inside the script tags to check a user's current location and insert it into the HTML.
+
+**MySolution:**
+```html
+<script>
+  // Add your code below this line
+
+  if (navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(position) {
+      document.getElementById('data').innerHTML="latitude: "+ 
+      position.coords.latitude + "<br>longitude: " + 
+      position.coords.longitude;
+    });
+  }
+
+  // Add your code above this line
+</script>
+<h4>You are here:</h4>
+<div id="data">
+
+</div>
+```
+
+## new
+**Example:**
+```
+
+```
+**Challange instruction:**
+
+**MySolution:**
+```html
+
+```
+
 ## new
 **Example:**
 ```
