@@ -26,3 +26,7 @@ Remember to use the Read-Search-Ask method if you get stuck.
 
 ## Solution:
 https://codepen.io/johnny2136/pen/VqmZvL
+
+Also requiers:
+https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js
+https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js
