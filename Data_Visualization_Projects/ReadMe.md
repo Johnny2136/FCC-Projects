@@ -2,7 +2,7 @@
 
 ## Projects
 
-- [ ] Visualize Data with a Bar Chart
+- [x] Visualize Data with a Bar Chart
 - [ ] Visualize Data with a Scatterplot Graph
 - [ ] Visualize Data with a Heat Map
 - [ ] Visualize Data with a Choropleth Map
