@@ -1,0 +1,83 @@
+* {
+  margin: auto;
+  padding: 0px; 
+}
+
+#Prog{
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px black;
+  font-size: 12px; 
+}
+
+body, html {
+  height: 100%;
+  margin: auto;
+  background-image: url( "https://raw.githubusercontent.com/Johnny2136/johnny2136.github.io/master/images/1%20yl87gEG2DVbo4807m2EYYQ.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+
+  .main .container {
+    height: 500px;
+    width: 900px;
+    background-color: #fff;
+    padding: 20px 20px 20px 20px;
+}
+
+.main .container #title {
+      text-align: center;
+      font-size: 50px; 
+}
+
+.main .container .chartArea {
+      position: absolute;
+      top: 150px; 
+}
+
+#tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  width: 100px;
+  height: 20px;
+  padding: 20px;
+  font: 10px;
+  background: white;
+  box-shadow: 1px 5px 5px;
+  border-radius: 50px;
+  pointer-events: none; 
+}
+
+.overlay {
+  position: absolute;
+  background: #fff;
+  pointer-events: none; 
+}
+
+#y-axis path {
+  stroke: black;
+  stroke-width: 1;
+  fill: none; 
+}
+
+#x-axis path {
+  stroke: black;
+  stroke-width: 1;
+  fill: none; 
+}
+
+footer {
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+}
