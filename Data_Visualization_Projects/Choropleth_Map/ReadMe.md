@@ -1,7 +1,7 @@
 # Data Visualization Projects - Visualize Data with a Choropleth Map
 
    ## Objective: 
-    Build a CodePen.io app that is functionally similar to this: https://codepen.io/freeCodeCamp/full/EZKqza.
+   Build a CodePen.io app that is functionally similar to this: https://codepen.io/freeCodeCamp/full/EZKqza.
     
    Fulfill the below user stories and get all of the tests to pass. Give it your own personal style.
    You can use HTML, JavaScript, CSS, and the D3 svg-based visualization library. Required (non-virtual) DOM elements are queried on the moment of each test. If you use a frontend framework (like Vue for example), the test results may be inaccurate for dynamic content. We hope to accommodate them eventually, but these frameworks are not currently supported for D3 projects.
@@ -21,9 +21,11 @@
    ## Here are the datasets you will need to complete this project:
    
    US Education Data: https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/for_user_education.json
+   
   US County Data: https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json
     
    You can build your project by forking this CodePen pen. Or you can use this CDN link to run the tests in any environment you like: https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js
+   
    Once you're done, submit the URL to your working project with all its tests passing.
    Remember to use the Read-Search-Ask method if you get stuck.
 
