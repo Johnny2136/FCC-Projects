@@ -5,5 +5,5 @@
 - [x] Visualize Data with a Bar Chart
 - [X] Visualize Data with a Scatterplot Graph
 - [X] Visualize Data with a Heat Map
-- [ ] Visualize Data with a Choropleth Map
-- [ ] Visualize Data with a Treemap Diagram
+- [X] Visualize Data with a Choropleth Map
+- [X] Visualize Data with a Treemap Diagram
